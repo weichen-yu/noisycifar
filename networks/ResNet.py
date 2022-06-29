@@ -1,6 +1,40 @@
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from copy import deepcopy
 
+class ModelEMA(nn.Module):
+    def __init__(self, model, decay=0.9999, device=None):
+        super().__init__()
+        self.module = deepcopy(model)
+        self.module.eval()
+        self.decay = decay
+        self.device = device
+        if self.device is not None:
+            self.module.to(device=device)
+
+    def forward(self, input):
+        return self.module(input)
+
+    def _update(self, model, update_fn):
+        with torch.no_grad():
+            for ema_v, model_v in zip(self.module.parameters(), model.parameters()):
+                if self.device is not None:
+                    model_v = model_v.to(device=self.device)
+                ema_v.copy_(update_fn(ema_v, model_v))
+            for ema_v, model_v in zip(self.module.buffers(), model.buffers()):
+                if self.device is not None:
+                    model_v = model_v.to(device=self.device)
+                ema_v.copy_(model_v)
+
+    def update_parameters(self, model):
+        self._update(model, update_fn=lambda e, m: self.decay * e + (1. - self.decay) * m)
+
+    def state_dict(self):
+        return self.module.state_dict()
+
+    def load_state_dict(self, state_dict):
+        self.module.load_state_dict(state_dict)
 
 # ResNet in PyTorch.
 # BasicBlock and Bottleneck module is from the original ResNet paper:
@@ -121,6 +155,40 @@ class PreActBottleneck(nn.Module):
         return out
 
 
+class CAttention(nn.Module):
+    def __init__(self, dim, num_heads=8, qkv_bias=False, attn_drop=0., proj_drop=0.):
+        super().__init__()
+        assert dim % num_heads == 0, 'dim should be divisible by num_heads'
+        self.num_heads = num_heads
+        head_dim = dim // num_heads
+        self.scale = head_dim ** -0.5
+
+        self.kv = nn.Linear(dim, dim * 2, bias=qkv_bias)
+        self.q = nn.Linear(dim, dim, bias=qkv_bias)
+        self.attn_drop = nn.Dropout(attn_drop)
+        self.proj = nn.Linear(dim, dim)
+        self.proj_drop = nn.Dropout(proj_drop)
+
+    def forward(self, x_kv, x_q):
+        B, C = x_kv.shape
+        N = 1
+        x_kv = x_kv.reshape(B, N, C)
+        x_q = x_q.reshape(B, N, C)
+        kv = self.kv(x_kv).reshape(B, N, 2, self.num_heads, C // self.num_heads).permute(2, 0, 3, 1, 4)
+        k, v = kv.unbind(0)
+
+        q = self.q(x_q).reshape(B, N, self.num_heads, C // self.num_heads).permute(0, 2, 1, 3)
+
+        attn = (q @ k.transpose(-2, -1)) * self.scale
+        attn = attn.softmax(dim=-1)
+        attn = self.attn_drop(attn)
+
+        x = (attn @ v).transpose(1, 2).reshape(B, N, C)
+        x = self.proj(x)
+        x = self.proj_drop(x)
+        x = x.reshape(B, -1)
+        return x
+
 class ResNet(nn.Module):
     def __init__(self, block, num_blocks, num_classes=10):
         super(ResNet, self).__init__()
@@ -128,6 +196,7 @@ class ResNet(nn.Module):
         self.num_classes = num_classes
         self.block = block
         self.num_blocks = num_blocks
+        self.size = 4
 
         self.conv1 = conv3x3(3, 64)
         self.bn1 = nn.BatchNorm2d(64)
@@ -135,6 +204,8 @@ class ResNet(nn.Module):
         self.layer2 = self._make_layer(block, 128, num_blocks[1], stride=2)
         self.layer3 = self._make_layer(block, 256, num_blocks[2], stride=2)
         self.layer4 = self._make_layer(block, 512, num_blocks[3], stride=2)
+        self.fuse = CAttention(512 * block.expansion)
+        # self.fuse = nn.Linear(512 * block.expansion * 2, 512 * block.expansion)
         self.linear = nn.Linear(512 * block.expansion, num_classes)
 
     def _make_layer(self, block, planes, num_blocks, stride):
@@ -146,7 +217,16 @@ class ResNet(nn.Module):
         return nn.Sequential(*layers)
 
     def forward(self, x, lin=0, lout=5):
-        out = x
+        x_cen = x
+        x_sur = deepcopy(x)
+        x_raw = deepcopy(x)
+        # mean = torch.mean(img)
+
+        x_sur[:, :, self.size:32-self.size, self.size:32-self.size] = 0
+        x_cen = x_cen - x_sur
+        b, _, _, _ = x_cen.shape
+        out = torch.cat([x_raw, x_cen], dim=0)
+
         if lin < 1 and lout > -1:
             out = self.conv1(out)
             out = self.bn1(out)
@@ -162,8 +242,20 @@ class ResNet(nn.Module):
         if lout > 4:
             out = F.avg_pool2d(out, 4)
             representation = out.view(out.size(0), -1)
-            out = self.linear(representation)
-        return out
+            representation_cen = representation[:b, ...]
+            representation_sur = representation[b:, ...]
+            # representation_new = F.relu(self.fuse(representation_sur, representation_cen))
+            representation_new = self.fuse(representation_sur, representation_cen)
+            # type2, relu可加可不加
+            # representation_new = F.relu(self.fuse(representation_cen, representation_sur))
+            # raw
+            # representation_new = torch.cat([representation_cen, representation_sur], dim=-1)
+            # representation_new = F.relu(self.fuse(representation_new))
+            out = self.linear(representation_new)
+            out2 = self.linear(representation_cen)
+            # 下面的可加可不加
+            out = out + out2
+        return out, out2
 
     def renew_layers(self, last_num_layers):
         if last_num_layers >= 3:
@@ -182,6 +274,8 @@ class ResNet(nn.Module):
             self.layer4 = self._make_layer(self.block, 512, self.num_blocks[3], stride=2)
 
         print("re-initalize the final layer")
+        self.fuse = CAttention(512 * BasicBlock.expansion)
+        #self.fuse = nn.Linear(512*2, 512)
         self.linear = nn.Linear(512, self.num_classes)
 
     def update_num_layers(self, last_num_layers):

@@ -72,7 +72,7 @@ def accuracy(output, target, topk=(1,)):
         return res
 
 
-def train(model, train_loader, optimizer, ceriation, epoch):
+def train(model, ema_model, train_loader, optimizer, ceriation, epoch, dataset):
     batch_time = AverageMeter('Time', ':6.2f')
     data_time = AverageMeter('Data', ':6.2f')
     losses = AverageMeter('Loss', ':6.2f')
@@ -85,15 +85,24 @@ def train(model, train_loader, optimizer, ceriation, epoch):
     model.train()
 
     end = time.time()
-    for i, (images, labels) in enumerate(train_loader):
+    for i, (images, labels, index) in enumerate(train_loader):
         # measure data loading time
         data_time.update(time.time() - end)
 
         images = Variable(images).cuda()
         labels = Variable(labels).cuda()
 
-        logist = model(images)
+        logist, logist2 = model(images)
         loss = ceriation(logist, labels)
+        loss2 = ceriation(logist2, labels)
+        loss = loss + loss2
+
+        #flooding
+        if dataset == 'cifar10' or dataset == 'CIFAR10':
+            b = 0.020
+        elif dataset == 'cifar100' or dataset == 'CIFAR100':
+            b = 0.003
+        loss = (loss-b).abs()+b
 
         acc1, acc5 = accuracy(logist, labels, topk=(1, 5))
         losses.update(loss.item(), images[0].size(0))
@@ -102,6 +111,8 @@ def train(model, train_loader, optimizer, ceriation, epoch):
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+        if ema_model is not None:
+            ema_model.update_parameters(model)
 
         batch_time.update(time.time() - end)
         end = time.time()
@@ -120,7 +131,7 @@ def evaluate(model, eva_loader, ceriation, prefix, ignore=-1):
             images = Variable(images).cuda()
             labels = Variable(labels).cuda()
 
-            logist = model(images)
+            logist, _ = model(images)
 
             loss = ceriation(logist, labels)
             acc1, acc5 = accuracy(logist, labels, topk=(1, 5))
@@ -144,8 +155,8 @@ def evaluateWithBoth(model1, model2, eva_loader, prefix):
             images = Variable(images).cuda()
             labels = Variable(labels).cuda()
 
-            logist1 = model1(images)
-            logist2 = model2(images)
+            logist1, _ = model1(images)
+            logist2, _ = model2(images)
             logist = (F.softmax(logist1, dim=1) + F.softmax(logist2, dim=1)) / 2
             acc1, acc5 = accuracy(logist, labels, topk=(1, 5))
             top1.update(acc1[0], images[0].size(0))
@@ -165,7 +176,7 @@ def predict(predict_loader, model):
         for images, _ in predict_loader:
             if torch.cuda.is_available():
                 images = Variable(images).cuda()
-                logits = model(images)
+                logits, _ = model(images)
                 outputs = F.softmax(logits, dim=1)
                 prob, pred = torch.max(outputs.data, 1)
                 preds.append(pred)
@@ -179,12 +190,12 @@ def predict_softmax(predict_loader, model):
     model.eval()
     softmax_outs = []
     with torch.no_grad():
-        for images1, images2 in predict_loader:
+        for images1, images2, index in predict_loader:
             if torch.cuda.is_available():
                 images1 = Variable(images1).cuda()
                 images2 = Variable(images2).cuda()
-                logits1 = model(images1)
-                logits2 = model(images2)
+                logits1, _ = model(images1)
+                logits2, _ = model(images2)
                 outputs = (F.softmax(logits1, dim=1) + F.softmax(logits2, dim=1)) / 2
                 softmax_outs.append(outputs)
 

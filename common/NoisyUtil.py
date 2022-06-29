@@ -8,6 +8,7 @@ import numpy as np
 from math import inf
 from scipy import stats
 import PIL.Image as Image
+import copy
 from numpy.testing import assert_array_almost_equal
 
 
@@ -195,12 +196,26 @@ def noisify(dataset='mnist', nb_classes=10, train_labels=None, noise_type=None, 
     return train_noisy_labels, actual_noise_rate
 
 
+def crop_img(img, size):
+    img_cen = img
+    img_sur = copy.deepcopy(img)
+    mean = torch.mean(img)
+
+    img_sur[:, size:32-size, size:32-size] = 0
+    img_cen = img_cen - img_sur
+
+    # replace 0 with mean
+    img_sur = img_sur + (~img_sur.bool()) * mean
+    img_cen = img_cen + (~img_cen.bool()) * mean
+    return img_cen, img_sur
+
 class Train_Dataset(Dataset):
     def __init__(self, data, labels, transform=None, target_transform=None):
         self.train_data = np.array(data)
         self.train_labels = np.array(labels)
         self.length = len(self.train_labels)
         self.target_transform = target_transform
+        self.size = 4
 
         if transform is None:
             self.transform = transforms.ToTensor()
@@ -218,7 +233,9 @@ class Train_Dataset(Dataset):
         if self.target_transform is not None:
             target = self.target_transform(target)
 
-        return img, target
+        # img_cen, img_sur = crop_img(img, self.size)
+
+        return img, target, index
 
     def __len__(self):
         return self.length
@@ -251,7 +268,10 @@ class Semi_Labeled_Dataset(Dataset):
         if self.target_transform is not None:
             target = self.target_transform(target)
 
-        return out1, out2, target
+        # out1_cen, out1_sur = crop_img(out1, self.size)
+        # out2_cen, out2_sur = crop_img(out2, self.size)
+
+        return out1, out2, target, index
 
     def __len__(self):
         return self.length
@@ -278,7 +298,10 @@ class Semi_Unlabeled_Dataset(Dataset):
             out1 = self.transform(img)
             out2 = self.transform(img)
 
-        return out1, out2
+        # out1_cen, out1_sur = crop_img(out1, self.size)
+        # out2_cen, out2_sur = crop_img(out2, self.size)
+
+        return out1, out2, index
 
     def __len__(self):
         return self.length

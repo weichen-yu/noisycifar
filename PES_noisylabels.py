@@ -54,7 +54,7 @@ parser.add_argument('--PES_lr', default=1e-4, type=float, help='initial learning
 parser.add_argument('--T1', default=0, type=int, help='if 0, set in below')
 parser.add_argument('--T2', default=5, type=int, help='default 5')
 
-parser.add_argument('--ema', default=0.999, type=float, help='EMA decay rate')
+parser.add_argument('--ema', default=0.997, type=float, help='EMA decay rate')
 
 args = parser.parse_args()
 print(args)
@@ -129,7 +129,7 @@ def MixMatch_train(epoch, net, ema_model, optimizer, labeled_trainloader, unlabe
             pu = (torch.softmax(outputs_u11, dim=1) + torch.softmax(outputs_u12, dim=1)) / 2
             ptu = pu**(1 / args.T)  # temparature sharpening
             pu2 = (torch.softmax(outputs2_u11, dim=1) + torch.softmax(outputs2_u12, dim=1)) / 2
-            ptu2 = pu**(1 / args.T)  # temparature sharpening
+            ptu2 = pu2**(1 / args.T)  # temparature sharpening
 
             targets_u = ptu / ptu.sum(dim=1, keepdim=True)  # normalize
             targets_u = targets_u.detach()
@@ -165,7 +165,7 @@ def MixMatch_train(epoch, net, ema_model, optimizer, labeled_trainloader, unlabe
 
         # Lx12 = ceriation(logits_x2, mixed_target2[:batch_size * 2], False)
         Lx2_mean = -torch.mean(F.log_softmax(logits_x, dim=1) * mixed_target2[:batch_size * 2], 0)
-        Lx222 = torch.sum(Lx_mean * class_weights)
+        Lx222 = torch.sum(Lx2_mean * class_weights)
         Lx22 = Lx222
         Lx = Lx + Lx22
 

@@ -85,3 +85,99 @@
 
 08:20:05 Namespace(PES_lr=0.0001, T=0.5, T1=20, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR10', ema=0.995, lambda_u=5, lr=0.02, model_dir='model/', noise_type='worse_label', num_class=10, num_epochs=200, optim='cos', seed=1, weight_decay=0.0005)
 08:20:05 Noisylabels: seed-1, Best Test Acc: 94.18946075439453
+
+08:09:39 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.999, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=1, weight_decay=0.0005)
+08:09:39 Noisylabels: seed-1, Best Test Acc: 72.91015625
+
+08:35:03 Namespace(PES_lr=0.0001, T=0.5, T1=20, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR10', ema=0.999, lambda_u=5, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=10, num_epochs=300, optim='cos', seed=1, weight_decay=0.0005)
+08:35:03 Noisylabels: seed-1, Best Test Acc: 95.72266387939453
+
+01:33:33 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=2, weight_decay=0.0005)
+01:33:33 Noisylabels: seed-2, Best Test Acc: 73.25196075439453
+
+01:38:16 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=1, weight_decay=0.0005)
+01:38:16 Noisylabels: seed-1, Best Test Acc: 72.060546875
+
+01:40:47 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=3, weight_decay=0.0005)
+01:40:47 Noisylabels: seed-3, Best Test Acc: 72.03125
+
+02:06:20 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=4, weight_decay=0.0005)
+02:06:20 Noisylabels: seed-4, Best Test Acc: 72.490234375
+
+02:21:19 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=2, weight_decay=0.0005)
+02:21:19 Noisylabels: seed-2, Best Test Acc: 72.841796875
+
+02:23:45 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=1, weight_decay=0.0005)
+02:23:45 Noisylabels: seed-1, Best Test Acc: 73.20313262939453
+
+22:43:03 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=1, weight_decay=0.0005)
+22:43:03 Noisylabels: seed-1, Best Test Acc: 72.3828125
+
+22:44:21 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=2, weight_decay=0.0005)
+22:44:21 Noisylabels: seed-2, Best Test Acc: 73.33985137939453
+
+22:44:26 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=3, weight_decay=0.0005)
+22:44:26 Noisylabels: seed-3, Best Test Acc: 72.96875
+
+22:50:53 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=4, weight_decay=0.0005)
+22:50:53 Noisylabels: seed-4, Best Test Acc: 73.115234375
+
+15:21:15 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=2, weight_decay=0.0005)
+15:21:15 Noisylabels: seed-2, Best Test Acc: 73.57422637939453
+
+15:26:33 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=3, weight_decay=0.0005)
+15:26:33 Noisylabels: seed-3, Best Test Acc: 72.724609375
+
+15:29:09 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=1, weight_decay=0.0005)
+15:29:09 Noisylabels: seed-1, Best Test Acc: 72.607421875
+
+15:40:58 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=4, weight_decay=0.0005)
+15:40:58 Noisylabels: seed-4, Best Test Acc: 72.890625
+
+08:43:53 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=2, weight_decay=0.0005)
+08:43:53 Noisylabels: seed-2, Best Test Acc: 73.21289825439453
+
+08:43:53 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=3, weight_decay=0.0005)
+08:43:53 Noisylabels: seed-3, Best Test Acc: 73.30078887939453
+
+08:44:10 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=4, weight_decay=0.0005)
+08:44:10 Noisylabels: seed-4, Best Test Acc: 73.33985137939453
+
+08:44:56 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=1, weight_decay=0.0005)
+08:44:56 Noisylabels: seed-1, Best Test Acc: 73.28125762939453
+
+18:14:34 Namespace(PES_lr=0.0001, T=0.5, T1=35, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR100', ema=0.997, lambda_u=75, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=100, num_epochs=300, optim='cos', seed=5, weight_decay=0.0005)
+18:14:34 Noisylabels: seed-5, Best Test Acc: 72.65625
+
+18:20:42 Namespace(PES_lr=0.0001, T=0.5, T1=20, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR10', ema=0.997, lambda_u=5, lr=0.02, model_dir='model/', noise_type='random_label2', num_class=10, num_epochs=300, optim='cos', seed=1, weight_decay=0.0005)
+18:20:42 Noisylabels: seed-1, Best Test Acc: 95.77149200439453
+
+18:21:20 Namespace(PES_lr=0.0001, T=0.5, T1=20, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR10', ema=0.997, lambda_u=5, lr=0.02, model_dir='model/', noise_type='aggre_label', num_class=10, num_epochs=300, optim='cos', seed=1, weight_decay=0.0005)
+18:21:20 Noisylabels: seed-1, Best Test Acc: 95.64453887939453
+
+18:28:36 Namespace(PES_lr=0.0001, T=0.5, T1=20, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR10', ema=0.997, lambda_u=5, lr=0.02, model_dir='model/', noise_type='worse_label', num_class=10, num_epochs=300, optim='cos', seed=1, weight_decay=0.0005)
+18:28:36 Noisylabels: seed-1, Best Test Acc: 94.47266387939453
+
+18:29:15 Namespace(PES_lr=0.0001, T=0.5, T1=20, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR10', ema=0.997, lambda_u=5, lr=0.02, model_dir='model/', noise_type='random_label2', num_class=10, num_epochs=300, optim='cos', seed=3, weight_decay=0.0005)
+18:29:15 Noisylabels: seed-3, Best Test Acc: 96.08399200439453
+
+18:32:35 Namespace(PES_lr=0.0001, T=0.5, T1=20, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR10', ema=0.997, lambda_u=5, lr=0.02, model_dir='model/', noise_type='worse_label', num_class=10, num_epochs=300, optim='cos', seed=4, weight_decay=0.0005)
+18:32:35 Noisylabels: seed-4, Best Test Acc: 94.58008575439453
+
+18:32:58 Namespace(PES_lr=0.0001, T=0.5, T1=20, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR10', ema=0.997, lambda_u=5, lr=0.02, model_dir='model/', noise_type='worse_label', num_class=10, num_epochs=300, optim='cos', seed=5, weight_decay=0.0005)
+18:32:58 Noisylabels: seed-5, Best Test Acc: 94.38477325439453
+
+18:33:03 Namespace(PES_lr=0.0001, T=0.5, T1=20, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR10', ema=0.997, lambda_u=5, lr=0.02, model_dir='model/', noise_type='random_label2', num_class=10, num_epochs=300, optim='cos', seed=2, weight_decay=0.0005)
+18:33:03 Noisylabels: seed-2, Best Test Acc: 96.16211700439453
+
+18:33:16 Namespace(PES_lr=0.0001, T=0.5, T1=20, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR10', ema=0.997, lambda_u=5, lr=0.02, model_dir='model/', noise_type='worse_label', num_class=10, num_epochs=300, optim='cos', seed=3, weight_decay=0.0005)
+18:33:16 Noisylabels: seed-3, Best Test Acc: 94.55078887939453
+
+18:35:06 Namespace(PES_lr=0.0001, T=0.5, T1=20, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR10', ema=0.997, lambda_u=5, lr=0.02, model_dir='model/', noise_type='random_label2', num_class=10, num_epochs=300, optim='cos', seed=5, weight_decay=0.0005)
+18:35:06 Noisylabels: seed-5, Best Test Acc: 96.12305450439453
+
+18:35:06 Namespace(PES_lr=0.0001, T=0.5, T1=20, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR10', ema=0.997, lambda_u=5, lr=0.02, model_dir='model/', noise_type='random_label2', num_class=10, num_epochs=300, optim='cos', seed=4, weight_decay=0.0005)
+18:35:06 Noisylabels: seed-4, Best Test Acc: 96.20117950439453
+
+18:35:57 Namespace(PES_lr=0.0001, T=0.5, T1=20, T2=5, alpha=0.75, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR10', ema=0.997, lambda_u=5, lr=0.02, model_dir='model/', noise_type='worse_label', num_class=10, num_epochs=300, optim='cos', seed=2, weight_decay=0.0005)
+18:35:57 Noisylabels: seed-2, Best Test Acc: 94.42383575439453

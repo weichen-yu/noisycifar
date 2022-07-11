@@ -189,6 +189,26 @@ class CAttention(nn.Module):
         x = x.reshape(B, -1)
         return x
 
+
+class AttLayer(nn.Module):
+    def __init__(self, out_channels, use_bias=False, reduction=16):
+        super(AttLayer, self).__init__()
+
+        # self.avg_pool = nn.AdaptiveAvgPool1d(1)
+        self.fc = nn.Sequential(
+            nn.Linear(out_channels, out_channels // reduction, bias=False),
+            nn.ReLU(inplace=True),
+            nn.Linear(out_channels // reduction, 1, bias=False),
+            nn.Hardsigmoid()
+        )
+
+    def forward(self, representation, x):
+        b, c = x.size()
+        # y = self.avg_pool(x).view(b, c)
+        y = self.fc(representation).view(b, 1)
+        return x * y.expand_as(x)
+
+
 class ResNet(nn.Module):
     def __init__(self, block, num_blocks, num_classes=10):
         super(ResNet, self).__init__()
@@ -205,8 +225,12 @@ class ResNet(nn.Module):
         self.layer3 = self._make_layer(block, 256, num_blocks[2], stride=2)
         self.layer4 = self._make_layer(block, 512, num_blocks[3], stride=2)
         self.fuse = CAttention(512 * block.expansion)
+        self.dy_gate1 = AttLayer(512, reduction=16)
+        self.dy_gate2 = AttLayer(512, reduction=16)
+
         # self.fuse = nn.Linear(512 * block.expansion * 2, 512 * block.expansion)
-        self.linear = nn.Linear(512 * block.expansion, num_classes)
+        self.linear1 = nn.Linear(512 * block.expansion, num_classes)
+        self.linear2 = nn.Linear(512 * block.expansion, num_classes)
 
     def _make_layer(self, block, planes, num_blocks, stride):
         strides = [stride] + [1] * (num_blocks - 1)
@@ -217,15 +241,12 @@ class ResNet(nn.Module):
         return nn.Sequential(*layers)
 
     def forward(self, x, lin=0, lout=5):
-        x_cen = x
-        x_sur = deepcopy(x)
-        x_raw = deepcopy(x)
-        # mean = torch.mean(img)
-
-        x_sur[:, :, self.size:32-self.size, self.size:32-self.size] = 0
-        x_cen = x_cen - x_sur
+        x_cen = torch.ones_like(x) * 0.5
+        x_raw = x
+        x_cen[:, :, self.size:32-self.size, self.size:32-self.size] = x[:, :, self.size:32-self.size, self.size:32-self.size]
         b, _, _, _ = x_cen.shape
-        out = torch.cat([x_raw, x_cen], dim=0)
+        # out = torch.cat([x_raw, x_raw], dim=0)
+        out = x_raw
 
         if lin < 1 and lout > -1:
             out = self.conv1(out)
@@ -242,19 +263,19 @@ class ResNet(nn.Module):
         if lout > 4:
             out = F.avg_pool2d(out, 4)
             representation = out.view(out.size(0), -1)
-            representation_cen = representation[:b, ...]
-            representation_sur = representation[b:, ...]
+            # representation_cen = representation[:b, ...]
+            # representation_sur = representation[b:, ...]
             # representation_new = F.relu(self.fuse(representation_sur, representation_cen))
-            representation_new = self.fuse(representation_sur, representation_cen)
+            representation_new = self.fuse(representation, representation)
             # type2, relu可加可不加
             # representation_new = F.relu(self.fuse(representation_cen, representation_sur))
             # raw
             # representation_new = torch.cat([representation_cen, representation_sur], dim=-1)
             # representation_new = F.relu(self.fuse(representation_new))
-            out = self.linear(representation_new)
-            out2 = self.linear(representation_cen)
+            out1 = self.linear1(representation_new)
+            out2 = self.linear2(representation)
             # 下面的可加可不加
-            out = out + out2
+            out = self.dy_gate1(representation_new, out2) + self.dy_gate2(representation, out1)
         return out, out2
 
     def renew_layers(self, last_num_layers):
@@ -275,8 +296,11 @@ class ResNet(nn.Module):
 
         print("re-initalize the final layer")
         self.fuse = CAttention(512 * BasicBlock.expansion)
+        self.dy_gate1 = AttLayer(512, reduction=16)
+        self.dy_gate2 = AttLayer(512, reduction=16)
         #self.fuse = nn.Linear(512*2, 512)
-        self.linear = nn.Linear(512, self.num_classes)
+        self.linear1 = nn.Linear(512, self.num_classes)
+        self.linear2 = nn.Linear(512, self.num_classes)
 
     def update_num_layers(self, last_num_layers):
         return

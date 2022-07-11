@@ -22,4 +22,4 @@ Liu. Understanding and improving early stopping for learning with noisy labels. 
 | c10_worse | 94.4727 | 94.4238 | 94.5508 | 94.5800 | 94.3848 | **94.48±0.07** |
 | c100      | 73.2813 | 73.2128 | 73.3008 | 73.3399 | 72.6563 | **73.16±0.25** |
 
-If you failed run this tracker, please be free to email us(weichen.yu@cripac.ia.ac.cn, hongyuan.yu@cripac.ia.ac.cn).
+If you failed run this code, please be free to email us(weichen.yu@cripac.ia.ac.cn, hongyuan.yu@cripac.ia.ac.cn).

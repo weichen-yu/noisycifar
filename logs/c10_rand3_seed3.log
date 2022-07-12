@@ -1,0 +1,955 @@
+Mon Jul 11 22:48:47 2022       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 515.48.07    Driver Version: 515.48.07    CUDA Version: 11.7     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  NVIDIA A100-SXM...  Off  | 00000000:6B:00.0 Off |                    0 |
+| N/A   32C    P0    71W / 400W |      4MiB / 81920MiB |      0%   E. Process |
+|                               |                      |             Disabled |
++-------------------------------+----------------------+----------------------+
+|   1  NVIDIA A100-SXM...  Off  | 00000000:71:00.0 Off |                    0 |
+| N/A   36C    P0    69W / 400W |      4MiB / 81920MiB |      0%   E. Process |
+|                               |                      |             Disabled |
++-------------------------------+----------------------+----------------------+
+|   2  NVIDIA A100-SXM...  Off  | 00000000:8A:00.0 Off |                    0 |
+| N/A   46C    P0    78W / 400W |      4MiB / 81920MiB |      0%   E. Process |
+|                               |                      |             Disabled |
++-------------------------------+----------------------+----------------------+
+|   3  NVIDIA A100-SXM...  Off  | 00000000:8E:00.0 Off |                    0 |
+| N/A   38C    P0    73W / 400W |      4MiB / 81920MiB |      0%   E. Process |
+|                               |                      |             Disabled |
++-------------------------------+----------------------+----------------------+
+|   4  NVIDIA A100-SXM...  Off  | 00000000:A8:00.0 Off |                    0 |
+| N/A   35C    P0    91W / 400W |      4MiB / 81920MiB |      0%   E. Process |
+|                               |                      |             Disabled |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|    0   N/A  N/A      3513      G   /usr/lib/xorg/Xorg                  4MiB |
+|    1   N/A  N/A      3513      G   /usr/lib/xorg/Xorg                  4MiB |
+|    2   N/A  N/A      3513      G   /usr/lib/xorg/Xorg                  4MiB |
+|    3   N/A  N/A      3513      G   /usr/lib/xorg/Xorg                  4MiB |
+|    4   N/A  N/A      3513      G   /usr/lib/xorg/Xorg                  4MiB |
++-----------------------------------------------------------------------------+
+Namespace(PES_lr=0.0001, T=0.5, T1=0, T2=5, alpha=4, batch_size=128, data_path='./data', data_percent=1, dataset='CIFAR10', ema=0.997, lambda_u=0, lr=0.02, noise_type='random_label3', num_epochs=300, optim='cos', seed=3, weight_decay=0.0005)
+Files already downloaded and verified
+Files already downloaded and verified
+Train Epoch: [0][  0/390]	Time   0.10	Data   0.00	Loss   3.93	Acc@1  29.09
+22:49:42 Epoch 0 Test Acc: 37.14
+22:49:45 Epoch 0  EMA Test Acc: 15.72
+Train Epoch: [1][  0/390]	Time   0.10	Data   0.00	Loss   3.35	Acc@1  41.32
+22:50:27 Epoch 1 Test Acc: 56.13
+22:50:29 Epoch 1  EMA Test Acc: 32.9
+Train Epoch: [2][  0/390]	Time   0.10	Data   0.00	Loss   3.00	Acc@1  49.38
+22:51:11 Epoch 2 Test Acc: 59.44
+22:51:14 Epoch 2  EMA Test Acc: 50.67
+Train Epoch: [3][  0/390]	Time   0.10	Data   0.00	Loss   2.70	Acc@1  55.96
+22:51:56 Epoch 3 Test Acc: 69.54
+22:51:58 Epoch 3  EMA Test Acc: 55.44
+Train Epoch: [4][  0/390]	Time   0.10	Data   0.00	Loss   2.51	Acc@1  60.35
+22:52:41 Epoch 4 Test Acc: 68.85
+22:52:44 Epoch 4  EMA Test Acc: 65.74
+Train Epoch: [5][  0/390]	Time   0.10	Data   0.00	Loss   2.38	Acc@1  62.80
+22:53:25 Epoch 5 Test Acc: 75.78
+22:53:28 Epoch 5  EMA Test Acc: 75.14
+Train Epoch: [6][  0/390]	Time   0.10	Data   0.00	Loss   2.31	Acc@1  64.40
+22:54:10 Epoch 6 Test Acc: 75.13
+22:54:13 Epoch 6  EMA Test Acc: 77.86
+Train Epoch: [7][  0/390]	Time   0.10	Data   0.00	Loss   2.22	Acc@1  66.09
+22:54:55 Epoch 7 Test Acc: 78.13
+22:54:57 Epoch 7  EMA Test Acc: 75.9
+Train Epoch: [8][  0/390]	Time   0.10	Data   0.00	Loss   2.17	Acc@1  67.27
+22:55:39 Epoch 8 Test Acc: 78.68
+22:55:42 Epoch 8  EMA Test Acc: 81.33
+Train Epoch: [9][  0/390]	Time   0.10	Data   0.00	Loss   2.12	Acc@1  68.16
+22:56:24 Epoch 9 Test Acc: 79.86
+22:56:27 Epoch 9  EMA Test Acc: 79.79
+Train Epoch: [10][  0/390]	Time   0.10	Data   0.00	Loss   2.08	Acc@1  69.02
+22:57:08 Epoch 10 Test Acc: 80.17
+22:57:11 Epoch 10  EMA Test Acc: 82.39
+Train Epoch: [11][  0/390]	Time   0.10	Data   0.00	Loss   2.04	Acc@1  69.84
+22:57:53 Epoch 11 Test Acc: 82.36
+22:57:55 Epoch 11  EMA Test Acc: 82.29
+Train Epoch: [12][  0/390]	Time   0.10	Data   0.00	Loss   2.01	Acc@1  70.27
+22:58:37 Epoch 12 Test Acc: 79.81
+22:58:39 Epoch 12  EMA Test Acc: 83.31
+Train Epoch: [13][  0/390]	Time   0.10	Data   0.00	Loss   1.98	Acc@1  70.85
+22:59:21 Epoch 13 Test Acc: 82.19
+22:59:24 Epoch 13  EMA Test Acc: 81.86
+Train Epoch: [14][  0/390]	Time   0.10	Data   0.00	Loss   1.97	Acc@1  71.08
+23:00:05 Epoch 14 Test Acc: 83.85
+23:00:08 Epoch 14  EMA Test Acc: 85.16
+Train Epoch: [15][  0/390]	Time   0.10	Data   0.00	Loss   1.93	Acc@1  71.76
+23:00:50 Epoch 15 Test Acc: 81.77
+23:00:52 Epoch 15  EMA Test Acc: 85.75
+Train Epoch: [16][  0/390]	Time   0.10	Data   0.00	Loss   1.93	Acc@1  72.07
+23:01:34 Epoch 16 Test Acc: 84.68
+23:01:37 Epoch 16  EMA Test Acc: 86.1
+Train Epoch: [17][  0/390]	Time   0.10	Data   0.00	Loss   1.90	Acc@1  72.67
+23:02:19 Epoch 17 Test Acc: 83.7
+23:02:21 Epoch 17  EMA Test Acc: 83.96
+Train Epoch: [18][  0/390]	Time   0.10	Data   0.00	Loss   1.88	Acc@1  73.02
+23:03:03 Epoch 18 Test Acc: 83.04
+23:03:05 Epoch 18  EMA Test Acc: 84.81
+Train Epoch: [19][  0/390]	Time   0.10	Data   0.00	Loss   1.87	Acc@1  73.16
+23:03:47 Epoch 19 Test Acc: 82.95
+23:03:50 Epoch 19  EMA Test Acc: 84.26
+re-initalize the final layer
+Train Epoch: [0][  0/390]	Time   0.05	Data   0.00	Loss   2.84	Acc@1  72.48
+23:04:10 Epoch 0 Test Acc: 86.98
+Train Epoch: [1][  0/390]	Time   0.05	Data   0.00	Loss   2.10	Acc@1  74.29
+23:04:30 Epoch 1 Test Acc: 87.19
+Train Epoch: [2][  0/390]	Time   0.05	Data   0.00	Loss   1.90	Acc@1  74.29
+23:04:51 Epoch 2 Test Acc: 87.32
+Train Epoch: [3][  0/390]	Time   0.05	Data   0.00	Loss   1.84	Acc@1  74.29
+23:05:11 Epoch 3 Test Acc: 87.21
+Train Epoch: [4][  0/390]	Time   0.05	Data   0.00	Loss   1.82	Acc@1  74.17
+23:05:32 Epoch 4 Test Acc: 87.25
+Loss   3.00 Loss_Lx   3.00 Loss_Lu 0.03824
+23:07:15 Epoch 20 Test Acc: 87.3
+23:07:17 Epoch 20  EMA Test Acc: 83.99
+Loss   2.91 Loss_Lx   2.90 Loss_Lu 0.03616
+23:09:01 Epoch 21 Test Acc: 86.46
+23:09:03 Epoch 21  EMA Test Acc: 82.01
+Loss   2.83 Loss_Lx   2.80 Loss_Lu 0.03524
+23:10:47 Epoch 22 Test Acc: 86.07
+23:10:49 Epoch 22  EMA Test Acc: 84.42
+Loss   2.85 Loss_Lx   2.81 Loss_Lu 0.03460
+23:12:32 Epoch 23 Test Acc: 86.5
+23:12:34 Epoch 23  EMA Test Acc: 82.71
+Loss   2.81 Loss_Lx   2.76 Loss_Lu 0.03379
+23:14:18 Epoch 24 Test Acc: 86.07
+23:14:20 Epoch 24  EMA Test Acc: 85.27
+Loss   2.80 Loss_Lx   2.74 Loss_Lu 0.03379
+23:16:03 Epoch 25 Test Acc: 87.12
+23:16:05 Epoch 25  EMA Test Acc: 86.65
+Loss   2.78 Loss_Lx   2.71 Loss_Lu 0.03310
+23:17:49 Epoch 26 Test Acc: 87.3
+23:17:51 Epoch 26  EMA Test Acc: 87.03
+Loss   2.76 Loss_Lx   2.68 Loss_Lu 0.03279
+23:19:34 Epoch 27 Test Acc: 87.19
+23:19:37 Epoch 27  EMA Test Acc: 87.4
+Loss   2.78 Loss_Lx   2.69 Loss_Lu 0.03269
+23:21:20 Epoch 28 Test Acc: 87.65
+23:21:23 Epoch 28  EMA Test Acc: 87.28
+Loss   2.76 Loss_Lx   2.67 Loss_Lu 0.03237
+23:23:06 Epoch 29 Test Acc: 87.18
+23:23:08 Epoch 29  EMA Test Acc: 86.46
+Loss   2.73 Loss_Lx   2.63 Loss_Lu 0.03216
+23:24:51 Epoch 30 Test Acc: 87.38
+23:24:54 Epoch 30  EMA Test Acc: 87.67
+Loss   2.74 Loss_Lx   2.63 Loss_Lu 0.03205
+23:26:37 Epoch 31 Test Acc: 87.13
+23:26:39 Epoch 31  EMA Test Acc: 85.44
+Loss   2.76 Loss_Lx   2.64 Loss_Lu 0.03220
+23:28:23 Epoch 32 Test Acc: 86.86
+23:28:25 Epoch 32  EMA Test Acc: 88.82
+Loss   2.76 Loss_Lx   2.62 Loss_Lu 0.03185
+23:30:08 Epoch 33 Test Acc: 88.43
+23:30:10 Epoch 33  EMA Test Acc: 86.88
+Loss   2.76 Loss_Lx   2.61 Loss_Lu 0.03208
+23:31:54 Epoch 34 Test Acc: 88.25
+23:31:56 Epoch 34  EMA Test Acc: 89.47
+Loss   2.74 Loss_Lx   2.58 Loss_Lu 0.03193
+23:33:39 Epoch 35 Test Acc: 89.23
+23:33:42 Epoch 35  EMA Test Acc: 89.75
+Loss   2.73 Loss_Lx   2.57 Loss_Lu 0.03132
+23:35:25 Epoch 36 Test Acc: 89.61
+23:35:28 Epoch 36  EMA Test Acc: 89.07
+Loss   2.71 Loss_Lx   2.55 Loss_Lu 0.03168
+23:37:11 Epoch 37 Test Acc: 89.27
+23:37:13 Epoch 37  EMA Test Acc: 90.43
+Loss   2.73 Loss_Lx   2.57 Loss_Lu 0.03184
+23:38:56 Epoch 38 Test Acc: 88.65
+23:38:59 Epoch 38  EMA Test Acc: 89.9
+Loss   2.70 Loss_Lx   2.55 Loss_Lu 0.03125
+23:40:42 Epoch 39 Test Acc: 89.62
+23:40:44 Epoch 39  EMA Test Acc: 90.41
+Loss   2.69 Loss_Lx   2.53 Loss_Lu 0.03132
+23:42:27 Epoch 40 Test Acc: 89.16
+23:42:30 Epoch 40  EMA Test Acc: 89.88
+Loss   2.71 Loss_Lx   2.55 Loss_Lu 0.03178
+23:44:12 Epoch 41 Test Acc: 89.25
+23:44:15 Epoch 41  EMA Test Acc: 90.49
+Loss   2.66 Loss_Lx   2.50 Loss_Lu 0.03118
+23:45:58 Epoch 42 Test Acc: 89.41
+23:46:00 Epoch 42  EMA Test Acc: 90.56
+Loss   2.67 Loss_Lx   2.52 Loss_Lu 0.03134
+23:47:44 Epoch 43 Test Acc: 89.53
+23:47:46 Epoch 43  EMA Test Acc: 90.13
+Loss   2.68 Loss_Lx   2.52 Loss_Lu 0.03152
+23:49:29 Epoch 44 Test Acc: 89.86
+23:49:31 Epoch 44  EMA Test Acc: 89.93
+Loss   2.62 Loss_Lx   2.46 Loss_Lu 0.03127
+23:51:14 Epoch 45 Test Acc: 90.18
+23:51:17 Epoch 45  EMA Test Acc: 90.43
+Loss   2.63 Loss_Lx   2.47 Loss_Lu 0.03106
+23:53:00 Epoch 46 Test Acc: 90.92
+23:53:02 Epoch 46  EMA Test Acc: 91.02
+Loss   2.65 Loss_Lx   2.50 Loss_Lu 0.03136
+23:54:45 Epoch 47 Test Acc: 90.44
+23:54:48 Epoch 47  EMA Test Acc: 88.64
+Loss   2.62 Loss_Lx   2.46 Loss_Lu 0.03104
+23:56:30 Epoch 48 Test Acc: 90.21
+23:56:33 Epoch 48  EMA Test Acc: 90.97
+Loss   2.62 Loss_Lx   2.46 Loss_Lu 0.03136
+23:58:16 Epoch 49 Test Acc: 90.36
+23:58:18 Epoch 49  EMA Test Acc: 91.76
+Loss   2.63 Loss_Lx   2.47 Loss_Lu 0.03135
+00:00:01 Epoch 50 Test Acc: 90.21
+00:00:03 Epoch 50  EMA Test Acc: 91.3
+Loss   2.63 Loss_Lx   2.47 Loss_Lu 0.03106
+00:01:46 Epoch 51 Test Acc: 91.0
+00:01:49 Epoch 51  EMA Test Acc: 91.49
+Loss   2.64 Loss_Lx   2.48 Loss_Lu 0.03150
+00:03:32 Epoch 52 Test Acc: 90.67
+00:03:34 Epoch 52  EMA Test Acc: 91.01
+Loss   2.62 Loss_Lx   2.46 Loss_Lu 0.03128
+00:05:17 Epoch 53 Test Acc: 90.46
+00:05:20 Epoch 53  EMA Test Acc: 92.39
+Loss   2.61 Loss_Lx   2.46 Loss_Lu 0.03099
+00:07:03 Epoch 54 Test Acc: 90.56
+00:07:05 Epoch 54  EMA Test Acc: 92.6
+Loss   2.58 Loss_Lx   2.43 Loss_Lu 0.03110
+00:08:49 Epoch 55 Test Acc: 91.47
+00:08:51 Epoch 55  EMA Test Acc: 92.91
+Loss   2.58 Loss_Lx   2.43 Loss_Lu 0.03088
+00:10:34 Epoch 56 Test Acc: 91.09
+00:10:37 Epoch 56  EMA Test Acc: 91.51
+Loss   2.56 Loss_Lx   2.40 Loss_Lu 0.03083
+00:12:19 Epoch 57 Test Acc: 91.5
+00:12:22 Epoch 57  EMA Test Acc: 91.12
+Loss   2.56 Loss_Lx   2.41 Loss_Lu 0.03092
+00:14:05 Epoch 58 Test Acc: 91.13
+00:14:07 Epoch 58  EMA Test Acc: 91.95
+Loss   2.58 Loss_Lx   2.42 Loss_Lu 0.03113
+00:15:50 Epoch 59 Test Acc: 91.88
+00:15:53 Epoch 59  EMA Test Acc: 90.28
+Loss   2.54 Loss_Lx   2.39 Loss_Lu 0.03069
+00:17:36 Epoch 60 Test Acc: 90.74
+00:17:38 Epoch 60  EMA Test Acc: 92.73
+Loss   2.55 Loss_Lx   2.39 Loss_Lu 0.03078
+00:19:21 Epoch 61 Test Acc: 91.47
+00:19:23 Epoch 61  EMA Test Acc: 92.45
+Loss   2.54 Loss_Lx   2.38 Loss_Lu 0.03106
+00:21:06 Epoch 62 Test Acc: 91.42
+00:21:09 Epoch 62  EMA Test Acc: 91.95
+Loss   2.53 Loss_Lx   2.38 Loss_Lu 0.03075
+00:22:51 Epoch 63 Test Acc: 91.65
+00:22:54 Epoch 63  EMA Test Acc: 91.86
+Loss   2.55 Loss_Lx   2.40 Loss_Lu 0.03082
+00:24:36 Epoch 64 Test Acc: 90.99
+00:24:39 Epoch 64  EMA Test Acc: 91.9
+Loss   2.55 Loss_Lx   2.39 Loss_Lu 0.03119
+00:26:22 Epoch 65 Test Acc: 90.87
+00:26:24 Epoch 65  EMA Test Acc: 92.9
+Loss   2.54 Loss_Lx   2.39 Loss_Lu 0.03088
+00:28:07 Epoch 66 Test Acc: 91.35
+00:28:09 Epoch 66  EMA Test Acc: 92.42
+Loss   2.53 Loss_Lx   2.37 Loss_Lu 0.03066
+00:29:52 Epoch 67 Test Acc: 91.02
+00:29:54 Epoch 67  EMA Test Acc: 91.2
+Loss   2.54 Loss_Lx   2.38 Loss_Lu 0.03044
+00:31:37 Epoch 68 Test Acc: 91.47
+00:31:40 Epoch 68  EMA Test Acc: 91.67
+Loss   2.52 Loss_Lx   2.37 Loss_Lu 0.03041
+00:33:23 Epoch 69 Test Acc: 91.21
+00:33:25 Epoch 69  EMA Test Acc: 92.68
+Loss   2.51 Loss_Lx   2.36 Loss_Lu 0.03036
+00:35:08 Epoch 70 Test Acc: 91.7
+00:35:10 Epoch 70  EMA Test Acc: 91.67
+Loss   2.52 Loss_Lx   2.37 Loss_Lu 0.03033
+00:36:53 Epoch 71 Test Acc: 91.62
+00:36:55 Epoch 71  EMA Test Acc: 92.13
+Loss   2.51 Loss_Lx   2.36 Loss_Lu 0.03076
+00:38:38 Epoch 72 Test Acc: 92.43
+00:38:41 Epoch 72  EMA Test Acc: 92.54
+Loss   2.50 Loss_Lx   2.35 Loss_Lu 0.03001
+00:40:23 Epoch 73 Test Acc: 91.75
+00:40:26 Epoch 73  EMA Test Acc: 92.94
+Loss   2.50 Loss_Lx   2.35 Loss_Lu 0.03014
+00:42:08 Epoch 74 Test Acc: 92.09
+00:42:11 Epoch 74  EMA Test Acc: 92.36
+Loss   2.49 Loss_Lx   2.33 Loss_Lu 0.03020
+00:43:54 Epoch 75 Test Acc: 91.88
+00:43:56 Epoch 75  EMA Test Acc: 93.68
+Loss   2.48 Loss_Lx   2.33 Loss_Lu 0.03031
+00:45:39 Epoch 76 Test Acc: 91.62
+00:45:42 Epoch 76  EMA Test Acc: 92.18
+Loss   2.50 Loss_Lx   2.35 Loss_Lu 0.03058
+00:47:25 Epoch 77 Test Acc: 91.53
+00:47:27 Epoch 77  EMA Test Acc: 93.19
+Loss   2.48 Loss_Lx   2.33 Loss_Lu 0.03071
+00:49:10 Epoch 78 Test Acc: 91.27
+00:49:13 Epoch 78  EMA Test Acc: 92.83
+Loss   2.47 Loss_Lx   2.32 Loss_Lu 0.03030
+00:50:55 Epoch 79 Test Acc: 91.69
+00:50:57 Epoch 79  EMA Test Acc: 93.15
+Loss   2.48 Loss_Lx   2.33 Loss_Lu 0.03045
+00:52:40 Epoch 80 Test Acc: 92.31
+00:52:42 Epoch 80  EMA Test Acc: 93.01
+Loss   2.47 Loss_Lx   2.32 Loss_Lu 0.03032
+00:54:25 Epoch 81 Test Acc: 92.52
+00:54:28 Epoch 81  EMA Test Acc: 93.41
+Loss   2.48 Loss_Lx   2.33 Loss_Lu 0.03022
+00:56:10 Epoch 82 Test Acc: 92.47
+00:56:13 Epoch 82  EMA Test Acc: 92.96
+Loss   2.49 Loss_Lx   2.33 Loss_Lu 0.03086
+00:57:56 Epoch 83 Test Acc: 92.57
+00:57:58 Epoch 83  EMA Test Acc: 92.76
+Loss   2.48 Loss_Lx   2.33 Loss_Lu 0.03044
+00:59:41 Epoch 84 Test Acc: 92.1
+00:59:43 Epoch 84  EMA Test Acc: 93.32
+Loss   2.47 Loss_Lx   2.32 Loss_Lu 0.02995
+01:01:26 Epoch 85 Test Acc: 92.07
+01:01:29 Epoch 85  EMA Test Acc: 92.47
+Loss   2.45 Loss_Lx   2.30 Loss_Lu 0.03001
+01:03:11 Epoch 86 Test Acc: 90.86
+01:03:14 Epoch 86  EMA Test Acc: 93.5
+Loss   2.44 Loss_Lx   2.29 Loss_Lu 0.03002
+01:04:57 Epoch 87 Test Acc: 93.28
+01:04:59 Epoch 87  EMA Test Acc: 93.36
+Loss   2.44 Loss_Lx   2.29 Loss_Lu 0.02971
+01:06:42 Epoch 88 Test Acc: 92.97
+01:06:44 Epoch 88  EMA Test Acc: 93.39
+Loss   2.44 Loss_Lx   2.29 Loss_Lu 0.02969
+01:08:27 Epoch 89 Test Acc: 92.52
+01:08:30 Epoch 89  EMA Test Acc: 92.7
+Loss   2.45 Loss_Lx   2.29 Loss_Lu 0.03009
+01:10:12 Epoch 90 Test Acc: 92.17
+01:10:14 Epoch 90  EMA Test Acc: 92.97
+Loss   2.42 Loss_Lx   2.27 Loss_Lu 0.02997
+01:11:57 Epoch 91 Test Acc: 92.37
+01:12:00 Epoch 91  EMA Test Acc: 93.35
+Loss   2.44 Loss_Lx   2.29 Loss_Lu 0.02990
+01:13:43 Epoch 92 Test Acc: 92.32
+01:13:45 Epoch 92  EMA Test Acc: 92.62
+Loss   2.42 Loss_Lx   2.27 Loss_Lu 0.03003
+01:15:28 Epoch 93 Test Acc: 92.49
+01:15:31 Epoch 93  EMA Test Acc: 93.04
+Loss   2.42 Loss_Lx   2.27 Loss_Lu 0.02969
+01:17:13 Epoch 94 Test Acc: 92.78
+01:17:16 Epoch 94  EMA Test Acc: 93.64
+Loss   2.42 Loss_Lx   2.27 Loss_Lu 0.03001
+01:18:58 Epoch 95 Test Acc: 92.33
+01:19:00 Epoch 95  EMA Test Acc: 93.01
+Loss   2.41 Loss_Lx   2.26 Loss_Lu 0.03003
+01:20:43 Epoch 96 Test Acc: 93.13
+01:20:45 Epoch 96  EMA Test Acc: 93.41
+Loss   2.43 Loss_Lx   2.29 Loss_Lu 0.02963
+01:22:28 Epoch 97 Test Acc: 92.54
+01:22:31 Epoch 97  EMA Test Acc: 92.58
+Loss   2.42 Loss_Lx   2.27 Loss_Lu 0.02994
+01:24:13 Epoch 98 Test Acc: 92.54
+01:24:16 Epoch 98  EMA Test Acc: 93.42
+Loss   2.42 Loss_Lx   2.27 Loss_Lu 0.02976
+01:25:59 Epoch 99 Test Acc: 92.89
+01:26:02 Epoch 99  EMA Test Acc: 93.41
+Loss   2.42 Loss_Lx   2.27 Loss_Lu 0.03018
+01:27:45 Epoch 100 Test Acc: 92.4
+01:27:47 Epoch 100  EMA Test Acc: 92.56
+Loss   2.40 Loss_Lx   2.25 Loss_Lu 0.02957
+01:29:30 Epoch 101 Test Acc: 92.55
+01:29:33 Epoch 101  EMA Test Acc: 94.17
+Loss   2.40 Loss_Lx   2.25 Loss_Lu 0.02943
+01:31:16 Epoch 102 Test Acc: 93.12
+01:31:18 Epoch 102  EMA Test Acc: 94.07
+Loss   2.40 Loss_Lx   2.25 Loss_Lu 0.02954
+01:33:01 Epoch 103 Test Acc: 92.86
+01:33:04 Epoch 103  EMA Test Acc: 93.75
+Loss   2.38 Loss_Lx   2.24 Loss_Lu 0.02946
+01:34:47 Epoch 104 Test Acc: 92.71
+01:34:49 Epoch 104  EMA Test Acc: 93.91
+Loss   2.40 Loss_Lx   2.25 Loss_Lu 0.02989
+01:36:32 Epoch 105 Test Acc: 92.87
+01:36:34 Epoch 105  EMA Test Acc: 93.13
+Loss   2.40 Loss_Lx   2.25 Loss_Lu 0.02958
+01:38:18 Epoch 106 Test Acc: 92.95
+01:38:21 Epoch 106  EMA Test Acc: 93.31
+Loss   2.40 Loss_Lx   2.25 Loss_Lu 0.02988
+01:40:04 Epoch 107 Test Acc: 93.12
+01:40:06 Epoch 107  EMA Test Acc: 93.75
+Loss   2.40 Loss_Lx   2.25 Loss_Lu 0.02979
+01:41:49 Epoch 108 Test Acc: 93.14
+01:41:51 Epoch 108  EMA Test Acc: 93.76
+Loss   2.36 Loss_Lx   2.21 Loss_Lu 0.02877
+01:43:35 Epoch 109 Test Acc: 92.88
+01:43:37 Epoch 109  EMA Test Acc: 93.53
+Loss   2.39 Loss_Lx   2.25 Loss_Lu 0.02949
+01:45:21 Epoch 110 Test Acc: 93.54
+01:45:23 Epoch 110  EMA Test Acc: 93.94
+Loss   2.37 Loss_Lx   2.22 Loss_Lu 0.02945
+01:47:07 Epoch 111 Test Acc: 93.24
+01:47:10 Epoch 111  EMA Test Acc: 93.26
+Loss   2.36 Loss_Lx   2.21 Loss_Lu 0.02913
+01:48:53 Epoch 112 Test Acc: 92.9
+01:48:56 Epoch 112  EMA Test Acc: 93.5
+Loss   2.37 Loss_Lx   2.23 Loss_Lu 0.02861
+01:50:39 Epoch 113 Test Acc: 92.75
+01:50:42 Epoch 113  EMA Test Acc: 93.43
+Loss   2.36 Loss_Lx   2.22 Loss_Lu 0.02867
+01:52:25 Epoch 114 Test Acc: 92.85
+01:52:28 Epoch 114  EMA Test Acc: 93.84
+Loss   2.37 Loss_Lx   2.23 Loss_Lu 0.02936
+01:54:11 Epoch 115 Test Acc: 92.47
+01:54:14 Epoch 115  EMA Test Acc: 93.56
+Loss   2.35 Loss_Lx   2.20 Loss_Lu 0.02912
+01:55:57 Epoch 116 Test Acc: 92.4
+01:56:00 Epoch 116  EMA Test Acc: 93.93
+Loss   2.35 Loss_Lx   2.21 Loss_Lu 0.02893
+01:57:44 Epoch 117 Test Acc: 93.54
+01:57:46 Epoch 117  EMA Test Acc: 94.45
+Loss   2.35 Loss_Lx   2.21 Loss_Lu 0.02875
+01:59:30 Epoch 118 Test Acc: 93.65
+01:59:33 Epoch 118  EMA Test Acc: 93.42
+Loss   2.35 Loss_Lx   2.20 Loss_Lu 0.02883
+02:01:17 Epoch 119 Test Acc: 93.57
+02:01:20 Epoch 119  EMA Test Acc: 93.14
+Loss   2.34 Loss_Lx   2.20 Loss_Lu 0.02918
+02:03:03 Epoch 120 Test Acc: 93.09
+02:03:06 Epoch 120  EMA Test Acc: 93.93
+Loss   2.35 Loss_Lx   2.20 Loss_Lu 0.02918
+02:04:50 Epoch 121 Test Acc: 93.4
+02:04:52 Epoch 121  EMA Test Acc: 94.03
+Loss   2.33 Loss_Lx   2.19 Loss_Lu 0.02880
+02:06:36 Epoch 122 Test Acc: 92.97
+02:06:38 Epoch 122  EMA Test Acc: 93.5
+Loss   2.35 Loss_Lx   2.20 Loss_Lu 0.02893
+02:08:22 Epoch 123 Test Acc: 93.03
+02:08:25 Epoch 123  EMA Test Acc: 94.32
+Loss   2.35 Loss_Lx   2.20 Loss_Lu 0.02915
+02:10:09 Epoch 124 Test Acc: 93.52
+02:10:11 Epoch 124  EMA Test Acc: 93.22
+Loss   2.32 Loss_Lx   2.17 Loss_Lu 0.02823
+02:11:55 Epoch 125 Test Acc: 93.17
+02:11:57 Epoch 125  EMA Test Acc: 94.2
+Loss   2.33 Loss_Lx   2.19 Loss_Lu 0.02904
+02:13:41 Epoch 126 Test Acc: 93.76
+02:13:43 Epoch 126  EMA Test Acc: 93.18
+Loss   2.33 Loss_Lx   2.19 Loss_Lu 0.02871
+02:15:27 Epoch 127 Test Acc: 93.2
+02:15:30 Epoch 127  EMA Test Acc: 92.09
+Loss   2.33 Loss_Lx   2.19 Loss_Lu 0.02819
+02:17:14 Epoch 128 Test Acc: 93.41
+02:17:16 Epoch 128  EMA Test Acc: 94.51
+Loss   2.31 Loss_Lx   2.17 Loss_Lu 0.02824
+02:19:00 Epoch 129 Test Acc: 92.68
+02:19:02 Epoch 129  EMA Test Acc: 93.94
+Loss   2.32 Loss_Lx   2.18 Loss_Lu 0.02839
+02:20:46 Epoch 130 Test Acc: 93.79
+02:20:48 Epoch 130  EMA Test Acc: 94.42
+Loss   2.32 Loss_Lx   2.18 Loss_Lu 0.02816
+02:22:32 Epoch 131 Test Acc: 93.9
+02:22:34 Epoch 131  EMA Test Acc: 94.47
+Loss   2.31 Loss_Lx   2.17 Loss_Lu 0.02820
+02:24:17 Epoch 132 Test Acc: 93.32
+02:24:20 Epoch 132  EMA Test Acc: 93.59
+Loss   2.30 Loss_Lx   2.16 Loss_Lu 0.02798
+02:26:04 Epoch 133 Test Acc: 93.33
+02:26:06 Epoch 133  EMA Test Acc: 94.32
+Loss   2.32 Loss_Lx   2.18 Loss_Lu 0.02844
+02:27:49 Epoch 134 Test Acc: 93.17
+02:27:52 Epoch 134  EMA Test Acc: 93.82
+Loss   2.29 Loss_Lx   2.15 Loss_Lu 0.02803
+02:29:35 Epoch 135 Test Acc: 93.63
+02:29:38 Epoch 135  EMA Test Acc: 94.11
+Loss   2.27 Loss_Lx   2.13 Loss_Lu 0.02777
+02:31:21 Epoch 136 Test Acc: 93.9
+02:31:23 Epoch 136  EMA Test Acc: 94.28
+Loss   2.30 Loss_Lx   2.16 Loss_Lu 0.02789
+02:33:07 Epoch 137 Test Acc: 93.89
+02:33:10 Epoch 137  EMA Test Acc: 94.37
+Loss   2.29 Loss_Lx   2.15 Loss_Lu 0.02802
+02:34:53 Epoch 138 Test Acc: 94.25
+02:34:55 Epoch 138  EMA Test Acc: 93.92
+Loss   2.27 Loss_Lx   2.13 Loss_Lu 0.02808
+02:36:40 Epoch 139 Test Acc: 93.77
+02:36:42 Epoch 139  EMA Test Acc: 94.26
+Loss   2.29 Loss_Lx   2.15 Loss_Lu 0.02791
+02:38:26 Epoch 140 Test Acc: 92.7
+02:38:29 Epoch 140  EMA Test Acc: 93.99
+Loss   2.30 Loss_Lx   2.16 Loss_Lu 0.02798
+02:40:12 Epoch 141 Test Acc: 93.53
+02:40:15 Epoch 141  EMA Test Acc: 94.09
+Loss   2.28 Loss_Lx   2.15 Loss_Lu 0.02747
+02:41:57 Epoch 142 Test Acc: 93.05
+02:42:00 Epoch 142  EMA Test Acc: 94.18
+Loss   2.27 Loss_Lx   2.13 Loss_Lu 0.02721
+02:43:42 Epoch 143 Test Acc: 93.36
+02:43:45 Epoch 143  EMA Test Acc: 93.78
+Loss   2.27 Loss_Lx   2.14 Loss_Lu 0.02703
+02:45:28 Epoch 144 Test Acc: 93.61
+02:45:31 Epoch 144  EMA Test Acc: 94.53
+Loss   2.25 Loss_Lx   2.12 Loss_Lu 0.02726
+02:47:15 Epoch 145 Test Acc: 93.49
+02:47:18 Epoch 145  EMA Test Acc: 94.14
+Loss   2.26 Loss_Lx   2.12 Loss_Lu 0.02781
+02:49:00 Epoch 146 Test Acc: 94.09
+02:49:03 Epoch 146  EMA Test Acc: 94.8
+Loss   2.27 Loss_Lx   2.13 Loss_Lu 0.02750
+02:50:47 Epoch 147 Test Acc: 93.66
+02:50:49 Epoch 147  EMA Test Acc: 94.06
+Loss   2.26 Loss_Lx   2.13 Loss_Lu 0.02781
+02:52:32 Epoch 148 Test Acc: 93.78
+02:52:35 Epoch 148  EMA Test Acc: 94.28
+Loss   2.26 Loss_Lx   2.13 Loss_Lu 0.02779
+02:54:17 Epoch 149 Test Acc: 93.7
+02:54:20 Epoch 149  EMA Test Acc: 94.2
+Loss   1.70 Loss_Lx   1.59 Loss_Lu 0.02210
+02:56:03 Epoch 150 Test Acc: 93.88
+02:56:05 Epoch 150  EMA Test Acc: 94.16
+Loss   1.69 Loss_Lx   1.58 Loss_Lu 0.02219
+02:57:48 Epoch 151 Test Acc: 93.95
+02:57:51 Epoch 151  EMA Test Acc: 92.02
+Loss   1.73 Loss_Lx   1.61 Loss_Lu 0.02296
+02:59:34 Epoch 152 Test Acc: 93.3
+02:59:36 Epoch 152  EMA Test Acc: 94.41
+Loss   1.75 Loss_Lx   1.64 Loss_Lu 0.02232
+03:01:20 Epoch 153 Test Acc: 93.62
+03:01:22 Epoch 153  EMA Test Acc: 94.13
+Loss   1.71 Loss_Lx   1.60 Loss_Lu 0.02237
+03:03:06 Epoch 154 Test Acc: 93.66
+03:03:08 Epoch 154  EMA Test Acc: 94.22
+Loss   1.73 Loss_Lx   1.62 Loss_Lu 0.02274
+03:04:52 Epoch 155 Test Acc: 94.35
+03:04:54 Epoch 155  EMA Test Acc: 94.92
+Loss   1.69 Loss_Lx   1.58 Loss_Lu 0.02201
+03:06:38 Epoch 156 Test Acc: 92.86
+03:06:41 Epoch 156  EMA Test Acc: 94.52
+Loss   1.70 Loss_Lx   1.59 Loss_Lu 0.02192
+03:08:26 Epoch 157 Test Acc: 93.68
+03:08:28 Epoch 157  EMA Test Acc: 94.51
+Loss   1.67 Loss_Lx   1.56 Loss_Lu 0.02209
+03:10:12 Epoch 158 Test Acc: 94.19
+03:10:14 Epoch 158  EMA Test Acc: 93.6
+Loss   1.69 Loss_Lx   1.57 Loss_Lu 0.02305
+03:11:58 Epoch 159 Test Acc: 93.95
+03:12:01 Epoch 159  EMA Test Acc: 94.69
+Loss   1.70 Loss_Lx   1.59 Loss_Lu 0.02183
+03:13:45 Epoch 160 Test Acc: 94.08
+03:13:48 Epoch 160  EMA Test Acc: 94.67
+Loss   1.65 Loss_Lx   1.54 Loss_Lu 0.02136
+03:15:31 Epoch 161 Test Acc: 94.49
+03:15:33 Epoch 161  EMA Test Acc: 94.51
+Loss   1.61 Loss_Lx   1.50 Loss_Lu 0.02108
+03:17:17 Epoch 162 Test Acc: 93.93
+03:17:20 Epoch 162  EMA Test Acc: 93.4
+Loss   1.68 Loss_Lx   1.57 Loss_Lu 0.02179
+03:19:03 Epoch 163 Test Acc: 94.14
+03:19:06 Epoch 163  EMA Test Acc: 94.32
+Loss   1.66 Loss_Lx   1.55 Loss_Lu 0.02148
+03:20:49 Epoch 164 Test Acc: 93.96
+03:20:51 Epoch 164  EMA Test Acc: 94.91
+Loss   1.73 Loss_Lx   1.62 Loss_Lu 0.02253
+03:22:35 Epoch 165 Test Acc: 94.12
+03:22:37 Epoch 165  EMA Test Acc: 95.16
+Loss   1.67 Loss_Lx   1.57 Loss_Lu 0.02165
+03:24:22 Epoch 166 Test Acc: 94.26
+03:24:25 Epoch 166  EMA Test Acc: 94.91
+Loss   1.64 Loss_Lx   1.53 Loss_Lu 0.02101
+03:26:08 Epoch 167 Test Acc: 93.65
+03:26:11 Epoch 167  EMA Test Acc: 94.57
+Loss   1.67 Loss_Lx   1.56 Loss_Lu 0.02134
+03:27:54 Epoch 168 Test Acc: 94.53
+03:27:56 Epoch 168  EMA Test Acc: 95.03
+Loss   1.68 Loss_Lx   1.57 Loss_Lu 0.02091
+03:29:40 Epoch 169 Test Acc: 94.27
+03:29:42 Epoch 169  EMA Test Acc: 95.11
+Loss   1.67 Loss_Lx   1.56 Loss_Lu 0.02102
+03:31:26 Epoch 170 Test Acc: 94.11
+03:31:28 Epoch 170  EMA Test Acc: 94.9
+Loss   1.58 Loss_Lx   1.48 Loss_Lu 0.01999
+03:33:11 Epoch 171 Test Acc: 93.92
+03:33:14 Epoch 171  EMA Test Acc: 94.81
+Loss   1.66 Loss_Lx   1.55 Loss_Lu 0.02103
+03:34:58 Epoch 172 Test Acc: 94.46
+03:35:01 Epoch 172  EMA Test Acc: 94.94
+Loss   1.65 Loss_Lx   1.55 Loss_Lu 0.02084
+03:36:45 Epoch 173 Test Acc: 94.23
+03:36:47 Epoch 173  EMA Test Acc: 94.17
+Loss   1.70 Loss_Lx   1.59 Loss_Lu 0.02142
+03:38:34 Epoch 174 Test Acc: 94.37
+03:38:37 Epoch 174  EMA Test Acc: 94.57
+Loss   1.62 Loss_Lx   1.52 Loss_Lu 0.02047
+03:40:22 Epoch 175 Test Acc: 94.35
+03:40:25 Epoch 175  EMA Test Acc: 95.31
+Loss   1.64 Loss_Lx   1.54 Loss_Lu 0.02078
+03:42:12 Epoch 176 Test Acc: 94.48
+03:42:14 Epoch 176  EMA Test Acc: 95.06
+Loss   1.58 Loss_Lx   1.48 Loss_Lu 0.01975
+03:43:58 Epoch 177 Test Acc: 94.43
+03:44:00 Epoch 177  EMA Test Acc: 95.05
+Loss   1.57 Loss_Lx   1.47 Loss_Lu 0.02019
+03:45:46 Epoch 178 Test Acc: 93.98
+03:45:49 Epoch 178  EMA Test Acc: 95.17
+Loss   1.63 Loss_Lx   1.52 Loss_Lu 0.02046
+03:47:33 Epoch 179 Test Acc: 94.25
+03:47:35 Epoch 179  EMA Test Acc: 95.22
+Loss   1.66 Loss_Lx   1.56 Loss_Lu 0.02011
+03:49:20 Epoch 180 Test Acc: 94.46
+03:49:23 Epoch 180  EMA Test Acc: 94.88
+Loss   1.63 Loss_Lx   1.53 Loss_Lu 0.02016
+03:51:08 Epoch 181 Test Acc: 94.74
+03:51:11 Epoch 181  EMA Test Acc: 95.15
+Loss   1.59 Loss_Lx   1.49 Loss_Lu 0.01958
+03:52:56 Epoch 182 Test Acc: 94.66
+03:52:58 Epoch 182  EMA Test Acc: 95.2
+Loss   1.63 Loss_Lx   1.53 Loss_Lu 0.02001
+03:54:45 Epoch 183 Test Acc: 94.37
+03:54:48 Epoch 183  EMA Test Acc: 94.95
+Loss   1.68 Loss_Lx   1.57 Loss_Lu 0.02052
+03:56:32 Epoch 184 Test Acc: 94.63
+03:56:34 Epoch 184  EMA Test Acc: 94.53
+Loss   1.63 Loss_Lx   1.53 Loss_Lu 0.02020
+03:58:20 Epoch 185 Test Acc: 94.94
+03:58:23 Epoch 185  EMA Test Acc: 94.57
+Loss   1.60 Loss_Lx   1.50 Loss_Lu 0.02006
+04:00:07 Epoch 186 Test Acc: 94.22
+04:00:09 Epoch 186  EMA Test Acc: 95.35
+Loss   1.62 Loss_Lx   1.52 Loss_Lu 0.01957
+04:01:53 Epoch 187 Test Acc: 94.76
+04:01:56 Epoch 187  EMA Test Acc: 95.41
+Loss   1.57 Loss_Lx   1.47 Loss_Lu 0.01965
+04:03:40 Epoch 188 Test Acc: 94.59
+04:03:42 Epoch 188  EMA Test Acc: 95.35
+Loss   1.55 Loss_Lx   1.45 Loss_Lu 0.01913
+04:05:26 Epoch 189 Test Acc: 94.74
+04:05:28 Epoch 189  EMA Test Acc: 95.11
+Loss   1.54 Loss_Lx   1.45 Loss_Lu 0.01886
+04:07:12 Epoch 190 Test Acc: 94.32
+04:07:14 Epoch 190  EMA Test Acc: 94.78
+Loss   1.63 Loss_Lx   1.53 Loss_Lu 0.01985
+04:08:58 Epoch 191 Test Acc: 94.7
+04:09:00 Epoch 191  EMA Test Acc: 95.19
+Loss   1.56 Loss_Lx   1.46 Loss_Lu 0.01904
+04:10:45 Epoch 192 Test Acc: 94.89
+04:10:48 Epoch 192  EMA Test Acc: 95.29
+Loss   1.58 Loss_Lx   1.49 Loss_Lu 0.01858
+04:12:32 Epoch 193 Test Acc: 94.91
+04:12:34 Epoch 193  EMA Test Acc: 95.18
+Loss   1.56 Loss_Lx   1.46 Loss_Lu 0.01891
+04:14:19 Epoch 194 Test Acc: 94.38
+04:14:21 Epoch 194  EMA Test Acc: 95.64
+Loss   1.61 Loss_Lx   1.52 Loss_Lu 0.01937
+04:16:05 Epoch 195 Test Acc: 94.76
+04:16:07 Epoch 195  EMA Test Acc: 95.12
+Loss   1.56 Loss_Lx   1.46 Loss_Lu 0.01870
+04:17:50 Epoch 196 Test Acc: 94.97
+04:17:53 Epoch 196  EMA Test Acc: 95.23
+Loss   1.53 Loss_Lx   1.44 Loss_Lu 0.01853
+04:19:36 Epoch 197 Test Acc: 94.33
+04:19:38 Epoch 197  EMA Test Acc: 94.87
+Loss   1.58 Loss_Lx   1.49 Loss_Lu 0.01902
+04:21:23 Epoch 198 Test Acc: 94.74
+04:21:26 Epoch 198  EMA Test Acc: 94.99
+Loss   1.56 Loss_Lx   1.47 Loss_Lu 0.01904
+04:23:09 Epoch 199 Test Acc: 94.68
+04:23:11 Epoch 199  EMA Test Acc: 95.04
+Loss   1.52 Loss_Lx   1.43 Loss_Lu 0.01800
+04:24:55 Epoch 200 Test Acc: 94.79
+04:24:57 Epoch 200  EMA Test Acc: 95.33
+Loss   1.66 Loss_Lx   1.56 Loss_Lu 0.01982
+04:26:42 Epoch 201 Test Acc: 94.41
+04:26:44 Epoch 201  EMA Test Acc: 95.15
+Loss   1.54 Loss_Lx   1.44 Loss_Lu 0.01816
+04:28:28 Epoch 202 Test Acc: 94.62
+04:28:31 Epoch 202  EMA Test Acc: 95.4
+Loss   1.53 Loss_Lx   1.44 Loss_Lu 0.01802
+04:30:14 Epoch 203 Test Acc: 94.67
+04:30:16 Epoch 203  EMA Test Acc: 95.04
+Loss   1.57 Loss_Lx   1.48 Loss_Lu 0.01841
+04:32:02 Epoch 204 Test Acc: 94.79
+04:32:04 Epoch 204  EMA Test Acc: 94.86
+Loss   1.55 Loss_Lx   1.46 Loss_Lu 0.01824
+04:33:50 Epoch 205 Test Acc: 94.71
+04:33:52 Epoch 205  EMA Test Acc: 95.21
+Loss   1.52 Loss_Lx   1.42 Loss_Lu 0.01831
+04:35:35 Epoch 206 Test Acc: 94.99
+04:35:38 Epoch 206  EMA Test Acc: 95.39
+Loss   1.57 Loss_Lx   1.48 Loss_Lu 0.01853
+04:37:21 Epoch 207 Test Acc: 94.99
+04:37:24 Epoch 207  EMA Test Acc: 95.37
+Loss   1.55 Loss_Lx   1.46 Loss_Lu 0.01787
+04:39:07 Epoch 208 Test Acc: 95.36
+04:39:10 Epoch 208  EMA Test Acc: 95.2
+Loss   1.59 Loss_Lx   1.50 Loss_Lu 0.01830
+04:40:53 Epoch 209 Test Acc: 94.68
+04:40:56 Epoch 209  EMA Test Acc: 95.02
+Loss   1.52 Loss_Lx   1.43 Loss_Lu 0.01793
+04:42:39 Epoch 210 Test Acc: 94.9
+04:42:42 Epoch 210  EMA Test Acc: 95.07
+Loss   1.51 Loss_Lx   1.42 Loss_Lu 0.01762
+04:44:25 Epoch 211 Test Acc: 94.86
+04:44:28 Epoch 211  EMA Test Acc: 95.23
+Loss   1.61 Loss_Lx   1.52 Loss_Lu 0.01842
+04:46:11 Epoch 212 Test Acc: 95.24
+04:46:14 Epoch 212  EMA Test Acc: 95.1
+Loss   1.53 Loss_Lx   1.45 Loss_Lu 0.01745
+04:47:57 Epoch 213 Test Acc: 94.67
+04:47:59 Epoch 213  EMA Test Acc: 95.37
+Loss   1.49 Loss_Lx   1.41 Loss_Lu 0.01722
+04:49:43 Epoch 214 Test Acc: 94.48
+04:49:45 Epoch 214  EMA Test Acc: 95.38
+Loss   1.56 Loss_Lx   1.47 Loss_Lu 0.01789
+04:51:28 Epoch 215 Test Acc: 94.99
+04:51:31 Epoch 215  EMA Test Acc: 95.47
+Loss   1.54 Loss_Lx   1.45 Loss_Lu 0.01732
+04:53:15 Epoch 216 Test Acc: 94.82
+04:53:17 Epoch 216  EMA Test Acc: 95.26
+Loss   1.50 Loss_Lx   1.41 Loss_Lu 0.01670
+04:55:00 Epoch 217 Test Acc: 94.79
+04:55:03 Epoch 217  EMA Test Acc: 95.56
+Loss   1.49 Loss_Lx   1.41 Loss_Lu 0.01678
+04:56:46 Epoch 218 Test Acc: 95.28
+04:56:49 Epoch 218  EMA Test Acc: 95.61
+Loss   1.53 Loss_Lx   1.45 Loss_Lu 0.01714
+04:58:32 Epoch 219 Test Acc: 94.9
+04:58:35 Epoch 219  EMA Test Acc: 95.28
+Loss   1.53 Loss_Lx   1.44 Loss_Lu 0.01705
+05:00:18 Epoch 220 Test Acc: 95.21
+05:00:20 Epoch 220  EMA Test Acc: 95.49
+Loss   1.55 Loss_Lx   1.46 Loss_Lu 0.01691
+05:02:04 Epoch 221 Test Acc: 95.12
+05:02:06 Epoch 221  EMA Test Acc: 95.59
+Loss   1.51 Loss_Lx   1.42 Loss_Lu 0.01659
+05:03:50 Epoch 222 Test Acc: 95.38
+05:03:52 Epoch 222  EMA Test Acc: 95.62
+Loss   1.52 Loss_Lx   1.44 Loss_Lu 0.01677
+05:05:36 Epoch 223 Test Acc: 95.15
+05:05:38 Epoch 223  EMA Test Acc: 95.17
+Loss   1.53 Loss_Lx   1.45 Loss_Lu 0.01669
+05:07:22 Epoch 224 Test Acc: 95.12
+05:07:24 Epoch 224  EMA Test Acc: 95.16
+Loss   1.47 Loss_Lx   1.39 Loss_Lu 0.01594
+05:09:08 Epoch 225 Test Acc: 95.13
+05:09:10 Epoch 225  EMA Test Acc: 95.61
+Loss   1.44 Loss_Lx   1.37 Loss_Lu 0.01550
+05:10:53 Epoch 226 Test Acc: 94.98
+05:10:56 Epoch 226  EMA Test Acc: 95.34
+Loss   1.53 Loss_Lx   1.45 Loss_Lu 0.01682
+05:12:39 Epoch 227 Test Acc: 95.31
+05:12:42 Epoch 227  EMA Test Acc: 95.48
+Loss   1.44 Loss_Lx   1.36 Loss_Lu 0.01548
+05:14:25 Epoch 228 Test Acc: 95.29
+05:14:27 Epoch 228  EMA Test Acc: 95.5
+Loss   1.45 Loss_Lx   1.37 Loss_Lu 0.01547
+05:16:11 Epoch 229 Test Acc: 95.96
+05:16:14 Epoch 229  EMA Test Acc: 95.32
+Loss   1.45 Loss_Lx   1.37 Loss_Lu 0.01510
+05:17:57 Epoch 230 Test Acc: 95.6
+05:18:00 Epoch 230  EMA Test Acc: 95.61
+Loss   1.43 Loss_Lx   1.35 Loss_Lu 0.01504
+05:19:43 Epoch 231 Test Acc: 95.48
+05:19:45 Epoch 231  EMA Test Acc: 95.63
+Loss   1.51 Loss_Lx   1.43 Loss_Lu 0.01602
+05:21:29 Epoch 232 Test Acc: 95.44
+05:21:31 Epoch 232  EMA Test Acc: 95.53
+Loss   1.44 Loss_Lx   1.36 Loss_Lu 0.01570
+05:23:15 Epoch 233 Test Acc: 95.48
+05:23:17 Epoch 233  EMA Test Acc: 95.56
+Loss   1.47 Loss_Lx   1.39 Loss_Lu 0.01545
+05:25:01 Epoch 234 Test Acc: 95.33
+05:25:03 Epoch 234  EMA Test Acc: 95.48
+Loss   1.42 Loss_Lx   1.35 Loss_Lu 0.01476
+05:26:46 Epoch 235 Test Acc: 95.12
+05:26:49 Epoch 235  EMA Test Acc: 95.62
+Loss   1.48 Loss_Lx   1.40 Loss_Lu 0.01591
+05:28:33 Epoch 236 Test Acc: 95.58
+05:28:35 Epoch 236  EMA Test Acc: 95.49
+Loss   1.45 Loss_Lx   1.37 Loss_Lu 0.01530
+05:30:18 Epoch 237 Test Acc: 95.25
+05:30:21 Epoch 237  EMA Test Acc: 95.54
+Loss   1.38 Loss_Lx   1.31 Loss_Lu 0.01420
+05:32:04 Epoch 238 Test Acc: 95.58
+05:32:07 Epoch 238  EMA Test Acc: 95.59
+Loss   1.44 Loss_Lx   1.37 Loss_Lu 0.01443
+05:33:50 Epoch 239 Test Acc: 95.36
+05:33:53 Epoch 239  EMA Test Acc: 95.46
+Loss   1.47 Loss_Lx   1.39 Loss_Lu 0.01541
+05:35:36 Epoch 240 Test Acc: 95.4
+05:35:39 Epoch 240  EMA Test Acc: 95.55
+Loss   1.48 Loss_Lx   1.41 Loss_Lu 0.01505
+05:37:22 Epoch 241 Test Acc: 95.72
+05:37:24 Epoch 241  EMA Test Acc: 95.67
+Loss   1.46 Loss_Lx   1.39 Loss_Lu 0.01475
+05:39:08 Epoch 242 Test Acc: 95.81
+05:39:10 Epoch 242  EMA Test Acc: 95.33
+Loss   1.47 Loss_Lx   1.40 Loss_Lu 0.01476
+05:40:54 Epoch 243 Test Acc: 95.62
+05:40:56 Epoch 243  EMA Test Acc: 95.65
+Loss   1.37 Loss_Lx   1.30 Loss_Lu 0.01374
+05:42:40 Epoch 244 Test Acc: 95.25
+05:42:42 Epoch 244  EMA Test Acc: 95.56
+Loss   1.36 Loss_Lx   1.29 Loss_Lu 0.01361
+05:44:25 Epoch 245 Test Acc: 95.57
+05:44:28 Epoch 245  EMA Test Acc: 95.78
+Loss   1.43 Loss_Lx   1.36 Loss_Lu 0.01408
+05:46:11 Epoch 246 Test Acc: 95.58
+05:46:14 Epoch 246  EMA Test Acc: 95.65
+Loss   1.41 Loss_Lx   1.34 Loss_Lu 0.01394
+05:47:57 Epoch 247 Test Acc: 95.44
+05:48:00 Epoch 247  EMA Test Acc: 95.59
+Loss   1.43 Loss_Lx   1.36 Loss_Lu 0.01425
+05:49:43 Epoch 248 Test Acc: 95.49
+05:49:46 Epoch 248  EMA Test Acc: 96.0
+Loss   1.47 Loss_Lx   1.40 Loss_Lu 0.01495
+05:51:29 Epoch 249 Test Acc: 95.67
+05:51:32 Epoch 249  EMA Test Acc: 95.93
+Loss   1.46 Loss_Lx   1.39 Loss_Lu 0.01457
+05:53:15 Epoch 250 Test Acc: 95.3
+05:53:18 Epoch 250  EMA Test Acc: 95.92
+Loss   1.41 Loss_Lx   1.34 Loss_Lu 0.01363
+05:55:01 Epoch 251 Test Acc: 95.62
+05:55:04 Epoch 251  EMA Test Acc: 95.97
+Loss   1.44 Loss_Lx   1.37 Loss_Lu 0.01438
+05:56:47 Epoch 252 Test Acc: 95.71
+05:56:50 Epoch 252  EMA Test Acc: 95.92
+Loss   1.40 Loss_Lx   1.33 Loss_Lu 0.01381
+05:58:33 Epoch 253 Test Acc: 95.8
+05:58:35 Epoch 253  EMA Test Acc: 96.06
+Loss   1.39 Loss_Lx   1.32 Loss_Lu 0.01390
+06:00:19 Epoch 254 Test Acc: 95.87
+06:00:22 Epoch 254  EMA Test Acc: 95.92
+Loss   1.36 Loss_Lx   1.29 Loss_Lu 0.01336
+06:02:05 Epoch 255 Test Acc: 95.63
+06:02:08 Epoch 255  EMA Test Acc: 95.5
+Loss   1.35 Loss_Lx   1.29 Loss_Lu 0.01312
+06:03:51 Epoch 256 Test Acc: 95.67
+06:03:53 Epoch 256  EMA Test Acc: 95.57
+Loss   1.40 Loss_Lx   1.33 Loss_Lu 0.01336
+06:05:37 Epoch 257 Test Acc: 95.77
+06:05:39 Epoch 257  EMA Test Acc: 95.82
+Loss   1.40 Loss_Lx   1.34 Loss_Lu 0.01348
+06:07:23 Epoch 258 Test Acc: 95.71
+06:07:25 Epoch 258  EMA Test Acc: 95.55
+Loss   1.38 Loss_Lx   1.32 Loss_Lu 0.01331
+06:09:09 Epoch 259 Test Acc: 95.65
+06:09:11 Epoch 259  EMA Test Acc: 95.7
+Loss   1.38 Loss_Lx   1.32 Loss_Lu 0.01325
+06:10:55 Epoch 260 Test Acc: 95.64
+06:10:57 Epoch 260  EMA Test Acc: 95.78
+Loss   1.38 Loss_Lx   1.32 Loss_Lu 0.01285
+06:12:41 Epoch 261 Test Acc: 95.64
+06:12:43 Epoch 261  EMA Test Acc: 95.84
+Loss   1.37 Loss_Lx   1.31 Loss_Lu 0.01295
+06:14:27 Epoch 262 Test Acc: 95.84
+06:14:29 Epoch 262  EMA Test Acc: 95.7
+Loss   1.39 Loss_Lx   1.33 Loss_Lu 0.01293
+06:16:13 Epoch 263 Test Acc: 95.83
+06:16:15 Epoch 263  EMA Test Acc: 95.79
+Loss   1.35 Loss_Lx   1.29 Loss_Lu 0.01258
+06:17:59 Epoch 264 Test Acc: 95.66
+06:18:01 Epoch 264  EMA Test Acc: 95.76
+Loss   1.31 Loss_Lx   1.25 Loss_Lu 0.01231
+06:19:45 Epoch 265 Test Acc: 95.71
+06:19:47 Epoch 265  EMA Test Acc: 95.78
+Loss   1.39 Loss_Lx   1.32 Loss_Lu 0.01266
+06:21:30 Epoch 266 Test Acc: 95.8
+06:21:33 Epoch 266  EMA Test Acc: 95.91
+Loss   1.30 Loss_Lx   1.24 Loss_Lu 0.01187
+06:23:16 Epoch 267 Test Acc: 95.89
+06:23:19 Epoch 267  EMA Test Acc: 95.77
+Loss   1.36 Loss_Lx   1.29 Loss_Lu 0.01235
+06:25:02 Epoch 268 Test Acc: 95.88
+06:25:05 Epoch 268  EMA Test Acc: 95.75
+Loss   1.35 Loss_Lx   1.29 Loss_Lu 0.01215
+06:26:48 Epoch 269 Test Acc: 95.85
+06:26:50 Epoch 269  EMA Test Acc: 95.96
+Loss   1.35 Loss_Lx   1.29 Loss_Lu 0.01282
+06:28:34 Epoch 270 Test Acc: 95.89
+06:28:36 Epoch 270  EMA Test Acc: 95.77
+Loss   1.36 Loss_Lx   1.30 Loss_Lu 0.01256
+06:30:20 Epoch 271 Test Acc: 95.94
+06:30:22 Epoch 271  EMA Test Acc: 95.85
+Loss   1.33 Loss_Lx   1.27 Loss_Lu 0.01193
+06:32:05 Epoch 272 Test Acc: 96.0
+06:32:08 Epoch 272  EMA Test Acc: 96.11
+Loss   1.34 Loss_Lx   1.28 Loss_Lu 0.01208
+06:33:51 Epoch 273 Test Acc: 95.92
+06:33:54 Epoch 273  EMA Test Acc: 95.8
+Loss   1.36 Loss_Lx   1.30 Loss_Lu 0.01248
+06:35:37 Epoch 274 Test Acc: 95.82
+06:35:40 Epoch 274  EMA Test Acc: 96.13
+Loss   1.34 Loss_Lx   1.28 Loss_Lu 0.01240
+06:37:24 Epoch 275 Test Acc: 95.79
+06:37:26 Epoch 275  EMA Test Acc: 95.82
+Loss   1.36 Loss_Lx   1.29 Loss_Lu 0.01280
+06:39:10 Epoch 276 Test Acc: 96.04
+06:39:12 Epoch 276  EMA Test Acc: 96.08
+Loss   1.36 Loss_Lx   1.30 Loss_Lu 0.01238
+06:40:55 Epoch 277 Test Acc: 95.9
+06:40:58 Epoch 277  EMA Test Acc: 95.96
+Loss   1.30 Loss_Lx   1.24 Loss_Lu 0.01147
+06:42:41 Epoch 278 Test Acc: 95.86
+06:42:43 Epoch 278  EMA Test Acc: 95.87
+Loss   1.28 Loss_Lx   1.23 Loss_Lu 0.01122
+06:44:27 Epoch 279 Test Acc: 95.77
+06:44:29 Epoch 279  EMA Test Acc: 95.89
+Loss   1.34 Loss_Lx   1.28 Loss_Lu 0.01168
+06:46:13 Epoch 280 Test Acc: 95.93
+06:46:15 Epoch 280  EMA Test Acc: 95.88
+Loss   1.34 Loss_Lx   1.28 Loss_Lu 0.01225
+06:47:58 Epoch 281 Test Acc: 95.87
+06:48:01 Epoch 281  EMA Test Acc: 96.02
+Loss   1.38 Loss_Lx   1.32 Loss_Lu 0.01200
+06:49:44 Epoch 282 Test Acc: 95.98
+06:49:47 Epoch 282  EMA Test Acc: 95.95
+Loss   1.36 Loss_Lx   1.30 Loss_Lu 0.01225
+06:51:30 Epoch 283 Test Acc: 96.08
+06:51:33 Epoch 283  EMA Test Acc: 95.86
+Loss   1.33 Loss_Lx   1.27 Loss_Lu 0.01161
+06:53:16 Epoch 284 Test Acc: 95.82
+06:53:19 Epoch 284  EMA Test Acc: 95.83
+Loss   1.31 Loss_Lx   1.25 Loss_Lu 0.01180
+06:55:02 Epoch 285 Test Acc: 95.82
+06:55:05 Epoch 285  EMA Test Acc: 95.97
+Loss   1.27 Loss_Lx   1.21 Loss_Lu 0.01116
+06:56:48 Epoch 286 Test Acc: 95.83
+06:56:51 Epoch 286  EMA Test Acc: 95.85
+Loss   1.33 Loss_Lx   1.27 Loss_Lu 0.01165
+06:58:34 Epoch 287 Test Acc: 95.96
+06:58:37 Epoch 287  EMA Test Acc: 95.89
+Loss   1.31 Loss_Lx   1.25 Loss_Lu 0.01128
+07:00:20 Epoch 288 Test Acc: 95.71
+07:00:23 Epoch 288  EMA Test Acc: 95.71
+Loss   1.36 Loss_Lx   1.30 Loss_Lu 0.01212
+07:02:06 Epoch 289 Test Acc: 95.99
+07:02:08 Epoch 289  EMA Test Acc: 96.0
+Loss   1.35 Loss_Lx   1.29 Loss_Lu 0.01181
+07:03:52 Epoch 290 Test Acc: 96.07
+07:03:54 Epoch 290  EMA Test Acc: 96.07
+Loss   1.32 Loss_Lx   1.26 Loss_Lu 0.01159
+07:05:38 Epoch 291 Test Acc: 95.96
+07:05:40 Epoch 291  EMA Test Acc: 95.95
+Loss   1.30 Loss_Lx   1.24 Loss_Lu 0.01144
+07:07:24 Epoch 292 Test Acc: 95.94
+07:07:26 Epoch 292  EMA Test Acc: 96.03
+Loss   1.28 Loss_Lx   1.22 Loss_Lu 0.01062
+07:09:09 Epoch 293 Test Acc: 96.02
+07:09:12 Epoch 293  EMA Test Acc: 95.92
+Loss   1.35 Loss_Lx   1.29 Loss_Lu 0.01184
+07:10:55 Epoch 294 Test Acc: 95.99
+07:10:58 Epoch 294  EMA Test Acc: 96.13
+Loss   1.32 Loss_Lx   1.26 Loss_Lu 0.01145
+07:12:41 Epoch 295 Test Acc: 95.9
+07:12:44 Epoch 295  EMA Test Acc: 96.05
+Loss   1.31 Loss_Lx   1.25 Loss_Lu 0.01113
+07:14:27 Epoch 296 Test Acc: 95.98
+07:14:29 Epoch 296  EMA Test Acc: 95.91
+Loss   1.31 Loss_Lx   1.25 Loss_Lu 0.01137
+07:16:13 Epoch 297 Test Acc: 96.03
+07:16:15 Epoch 297  EMA Test Acc: 96.04
+Loss   1.35 Loss_Lx   1.29 Loss_Lu 0.01183
+07:17:59 Epoch 298 Test Acc: 95.88
+07:18:01 Epoch 298  EMA Test Acc: 95.84
+Loss   1.35 Loss_Lx   1.29 Loss_Lu 0.01172
+07:19:45 Epoch 299 Test Acc: 95.84
+07:19:47 Epoch 299  EMA Test Acc: 95.87
+07:19:47 Best Test Acc: 96.13282012939453

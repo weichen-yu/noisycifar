@@ -29,7 +29,7 @@ from torchvision.datasets import CIFAR10, CIFAR100
 from torch.optim.lr_scheduler import LambdaLR
 
 from networks.ResNet import ResNet34, ModelEMA
-from common.tools import AverageMeter, getTime, evaluate, predict_softmax, train
+from common.tools import AverageMeter, getTime, evaluate, predict_softmax, train, task2_detection
 from common.NoisyUtil import Train_Dataset, Semi_Labeled_Dataset, Semi_Unlabeled_Dataset
 
 augment = aug_lib.TrivialAugment()
@@ -92,7 +92,7 @@ def linear_rampup(current, warm_up=20, rampup_length=16):
     return args.lambda_u * float(current)
 
 
-def MixMatch_train(epoch, net, ema_model, optimizer, labeled_trainloader, unlabeled_trainloader, class_weights, ceriation):
+def MixMatch_train(epoch, net, ema_model, optimizer, labeled_trainloader, unlabeled_trainloader, class_weights, clean_targets, ceriation):
     net.train()
     if epoch >= args.num_epochs / 2:
         args.alpha = 0.75
@@ -175,7 +175,7 @@ def MixMatch_train(epoch, net, ema_model, optimizer, labeled_trainloader, unlabe
         Lu2 = torch.mean((probs_u2 - mixed_target[batch_size * 2:])**2)
         Lu = Lu1 + Lu2
         loss = Lx + linear_rampup(epoch + batch_idx / num_iter, args.T1) * Lu
-
+       
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
@@ -193,6 +193,7 @@ def MixMatch_train(epoch, net, ema_model, optimizer, labeled_trainloader, unlabe
 def splite_confident(outs, clean_targets, noisy_targets):
     probs, preds = torch.max(outs.data, 1)
 
+
     confident_correct_num = 0
     unconfident_correct_num = 0
     confident_indexs = []
@@ -207,10 +208,13 @@ def splite_confident(outs, clean_targets, noisy_targets):
             unconfident_indexs.append(i)
             if clean_targets[i] == preds[i]:
                 unconfident_correct_num += 1
-
+    
+    precision = unconfident_correct_num/len(unconfident_indexs)
+    recall = unconfident_correct_num/(len(clean_targets) - (clean_targets == noisy_targets).sum())
+    F1 = 2/(1/precision+1/recall)
     # print(getTime(), "confident and unconfident num:", len(confident_indexs), round(confident_correct_num / len(confident_indexs) * 100, 2), len(unconfident_indexs), round(unconfident_correct_num / len(unconfident_indexs) * 100, 2))
     # import pdb; pdb.set_trace()
-    return confident_indexs, unconfident_indexs
+    return confident_indexs, unconfident_indexs, precision, recall, F1
 
 
 def update_trainloader(model, train_data, clean_targets, noisy_targets):
@@ -218,7 +222,7 @@ def update_trainloader(model, train_data, clean_targets, noisy_targets):
     predict_loader = DataLoader(dataset=predict_dataset, batch_size=args.batch_size * 2, shuffle=False, num_workers=8, pin_memory=True, drop_last=False)
     soft_outs = predict_softmax(predict_loader, model)
 
-    confident_indexs, unconfident_indexs = splite_confident(soft_outs, clean_targets, noisy_targets)
+    confident_indexs, unconfident_indexs, precision, recall, F1 = splite_confident(soft_outs, clean_targets, noisy_targets)
     confident_dataset = Semi_Labeled_Dataset(train_data[confident_indexs], noisy_targets[confident_indexs], transform_train)
     unconfident_dataset = Semi_Unlabeled_Dataset(train_data[unconfident_indexs], transform_train)
 
@@ -241,10 +245,10 @@ def update_trainloader(model, train_data, clean_targets, noisy_targets):
         cw[cw > 3] = 3
     class_weights = torch.FloatTensor(cw).cuda()
     # print("Category", train_nums, "precent", class_weights)
-    return labeled_trainloader, unlabeled_trainloader, class_weights
+    return labeled_trainloader, unlabeled_trainloader, class_weights, precision, recall, F1
 
 
-def noisy_refine(model, ema_model, train_loader, num_layer, refine_times, ceriation):
+def noisy_refine(model, clean_labels, noisy_labels, ema_model, train_loader, num_layer, refine_times, ceriation):
     if refine_times <= 0:
         return model
     # frezon all layers and add a new final layer
@@ -336,6 +340,8 @@ ceriation = nn.CrossEntropyLoss().cuda()
 train_dataset = Train_Dataset(data, noisy_labels, transform_train)
 train_loader = DataLoader(dataset=train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=8, pin_memory=True, drop_last=True)
 test_loader = DataLoader(dataset=test_set, batch_size=args.batch_size * 2, shuffle=False, num_workers=8, pin_memory=True)
+#task2_eva_loader = DataLoader(dataset=train_dataset, batch_size=len(train_dataset), shuffle=True, num_workers=8, pin_memory=True, drop_last=True)
+
 
 model = create_model(num_classes=args.num_class)
 
@@ -359,18 +365,21 @@ for epoch in range(args.num_epochs):
         train(model, ema_model, train_loader, optimizer, ceriation, epoch, args.dataset)
     else:
         if epoch == args.T1:
-            model, ema_model = noisy_refine(model, ema_model, train_loader, 0, args.T2, ceriation)
+            model, ema_model = noisy_refine(model, clean_labels, noisy_labels, ema_model, train_loader, 0, args.T2, ceriation)
 
         if ema_test_acc > test_acc:
-            labeled_trainloader, unlabeled_trainloader, class_weights = update_trainloader(ema_model, data, clean_labels, noisy_labels)
-        else:
-            labeled_trainloader, unlabeled_trainloader, class_weights = update_trainloader(model, data, clean_labels, noisy_labels)
+            labeled_trainloader, unlabeled_trainloader, class_weights, precision, recall, F1 = update_trainloader(ema_model, data, clean_labels, noisy_labels)
+            print('task2 precision {},recall {},F1 {}'.format(precision, recall, F1))
 
-        MixMatch_train(epoch, model, ema_model, optimizer, labeled_trainloader, unlabeled_trainloader, class_weights, ceriation)
+        else:
+            labeled_trainloader, unlabeled_trainloader, class_weights, precision, recall, F1 = update_trainloader(model, data, clean_labels, noisy_labels)
+            print('task2 precision {},recall {},F1 {}'.format(precision, recall, F1))
+
+        MixMatch_train(epoch, model, ema_model, optimizer, labeled_trainloader, unlabeled_trainloader, class_weights, clean_labels, ceriation)
 
     _, test_acc = evaluate(model, test_loader, ceriation, "Epoch " + str(epoch) + " Test Acc:")
     _, ema_test_acc = evaluate(ema_model, test_loader, ceriation, "Epoch " + str(epoch) + "  EMA Test Acc:")
-
+    args.T2=0
    
     if best_test_acc < test_acc:
        best_test_acc = test_acc

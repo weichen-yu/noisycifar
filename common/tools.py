@@ -120,6 +120,29 @@ def train(model, ema_model, train_loader, optimizer, ceriation, epoch, dataset):
     progress.display(0)
     return losses.avg, top1.avg.to("cpu", torch.float).item()
 
+def splite_confident(outs, clean_targets, noisy_targets):
+    probs, preds = torch.max(outs.data, 1)
+    confident_correct_num = 0
+    unconfident_correct_num = 0
+    confident_indexs = []
+    unconfident_indexs = []
+
+    for i in range(0, len(noisy_targets)):
+        if preds[i] == noisy_targets[i]:
+            confident_indexs.append(i)
+            if clean_targets[i] == preds[i]:
+                confident_correct_num += 1
+        else:
+            unconfident_indexs.append(i)
+            if clean_targets[i] == preds[i]:
+                unconfident_correct_num += 1
+    
+    precision = unconfident_correct_num/len(unconfident_indexs)
+    recall = unconfident_correct_num/(len(clean_targets) - (clean_targets == noisy_targets).sum())
+    F1 = 2/(1/precision+1/recall)
+    # print(getTime(), "confident and unconfident num:", len(confident_indexs), round(confident_correct_num / len(confident_indexs) * 100, 2), len(unconfident_indexs), round(unconfident_correct_num / len(unconfident_indexs) * 100, 2))
+    # import pdb; pdb.set_trace()
+    return confident_indexs, unconfident_indexs, precision, recall, F1
 
 def evaluate(model, eva_loader, ceriation, prefix, ignore=-1):
     losses = AverageMeter('Loss', ':3.2f')
@@ -132,19 +155,43 @@ def evaluate(model, eva_loader, ceriation, prefix, ignore=-1):
             labels = Variable(labels).cuda()
 
             logist, _ = model(images)
-
+            
             loss = ceriation(logist, labels)
             acc1, acc5 = accuracy(logist, labels, topk=(1, 5))
-
+            
             losses.update(loss.item(), images[0].size(0))
             top1.update(acc1[0], images[0].size(0))
 
     if prefix != "":
         print(getTime(), prefix, round(top1.avg.item(), 2))
 
+
     return losses.avg, top1.avg.to("cpu", torch.float).item()
 
+def task2_detection(model, train_loader, clean_targets):
+    #
+    model.eval()
+    with torch.no_grad():
+        logits_all = []
+        labels_all = []
+        for i, (data) in enumerate(train_loader):
+            #
+            images = Variable(data[0]).cuda()
+            labels = Variable(data[1]).cuda()
+            #indexes = Variable(data[2]).cuda()
+            
 
+            logist, _ = model(images)
+            logits_all.append(logist)
+            labels_all.append(labels)
+        logits_all = torch.cat(logits_all,dim=0)
+        labels_all = torch.cat(labels_all,dim=0)
+
+        import pdb;pdb.set_trace()
+        clean_targets = torch.tensor(clean_targets).cuda()
+        
+        confident_indexs, unconfident_indexs, precision, recall, F1 = splite_confident(logits_all,clean_targets, labels_all)
+        print('task2 precision {},recall {},F1 {}'.format(precision, recall, F1))
 def evaluateWithBoth(model1, model2, eva_loader, prefix):
     top1 = AverageMeter('Acc@1', ':3.2f')
     model1.eval()

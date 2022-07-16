@@ -25,6 +25,8 @@ Liu. Understanding and improving early stopping for learning with noisy labels. 
 | c100      | 73.2813 | 73.2128 | 73.3008 | 73.3399 | 72.6563 | **73.16±0.25** |
 
 For task2, first, use the training model and parameter (in XXXXX.ptm), and change the save_path, then run run.sh for the task_2 part
-
+'''
+CUDA_VISIBLE_DEVICES=6 python task_2evaluate.py --dataset CIFAR100 --seed 5 --save_path the_ptm_path
+'''
 If you failed run this code, please be free to email us(weichen.yu@cripac.ia.ac.cn, hongyuan.yu@cripac.ia.ac.cn).
 

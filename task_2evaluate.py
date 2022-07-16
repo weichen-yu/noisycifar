@@ -22,14 +22,16 @@ import torch.optim as optim
 import torch.nn.functional as F
 import torch.backends.cudnn as cudnn
 import torchvision.transforms as transforms
+import torch.utils.data as tordata
 import aug_lib
 from torch.utils.data import DataLoader
 from torch.optim.lr_scheduler import MultiStepLR, CosineAnnealingLR
 from torchvision.datasets import CIFAR10, CIFAR100
 from torch.optim.lr_scheduler import LambdaLR
+from torch.autograd import Variable
 
 from networks.ResNet import ResNet34, ModelEMA
-from common.tools import AverageMeter, getTime, evaluate, predict_softmax, train, task2_detection
+from common.tools import AverageMeter, getTime, evaluate, predict_softmax, train
 from common.NoisyUtil import Train_Dataset, Semi_Labeled_Dataset, Semi_Unlabeled_Dataset
 
 augment = aug_lib.TrivialAugment()
@@ -53,6 +55,7 @@ parser.add_argument('--lambda_u', default=0, type=float, help='weight for unsupe
 parser.add_argument('--PES_lr', default=1e-4, type=float, help='initial learning rate')
 parser.add_argument('--T1', default=0, type=int, help='if 0, set in below')
 parser.add_argument('--T2', default=5, type=int, help='default 5')
+parser.add_argument('--save_path', default='/noisycifar/checkpoint/CIFAR10-aggre_label-best_ckp.ptm', type=str, help='the checkpoint before')
 
 parser.add_argument('--ema', default=0.997, type=float, help='EMA decay rate')
 
@@ -98,7 +101,7 @@ def splite_confident(outs, clean_targets, noisy_targets):
             unconfident_indexs.append(i)
             if clean_targets[i] == preds[i]:
                 unconfident_correct_num += 1
-    
+    import pdb;pdb.set_trace()
     precision = unconfident_correct_num/len(unconfident_indexs)
     recall = unconfident_correct_num/(len(clean_targets) - (clean_targets == noisy_targets).sum())
     F1 = 2/(1/precision+1/recall)
@@ -160,6 +163,30 @@ elif args.dataset == 'cifar100' or args.dataset == 'CIFAR100':
     clean_labels = cifar_n_label['clean_label'] 
     noisy_labels = cifar_n_label['noisy_label'] 
 
+def task2_detection(model, train_loader, clean_targets):
+    #
+    model.eval()
+    with torch.no_grad():
+        logits_all = []
+        labels_all = []
+        for i, (data) in enumerate(train_loader):
+            #
+            images = Variable(data[0]).cuda()
+            labels = Variable(data[1]).cuda()
+            #indexes = Variable(data[2]).cuda()
+            
+
+            logist, _ = model(images)
+            logits_all.append(logist)
+            labels_all.append(labels)
+        logits_all = torch.cat(logits_all,dim=0)
+        labels_all = torch.cat(labels_all,dim=0)
+
+        #import pdb;pdb.set_trace()
+        clean_targets = torch.tensor(clean_targets).cuda()
+        
+        confident_indexs, unconfident_indexs, precision, recall, F1 = splite_confident(logits_all,clean_targets, labels_all)
+        print('task2 precision {},recall {},F1 {}'.format(precision, recall, F1))
 
 def save(model, optimizer, scheduler, dataset, noise_type='c100'):
     os.makedirs('checkpoint', exist_ok=True)
@@ -180,12 +207,12 @@ ceriation = nn.CrossEntropyLoss().cuda()
 train_dataset = Train_Dataset(data, noisy_labels, transform_train)
 #train_loader = DataLoader(dataset=train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=8, pin_memory=True, drop_last=True)
 #test_loader = DataLoader(dataset=test_set, batch_size=args.batch_size * 2, shuffle=False, num_workers=8, pin_memory=True)
-task2_eva_loader = DataLoader(dataset=train_dataset, batch_size=1, shuffle=True, num_workers=8, pin_memory=True, drop_last=True)
+task2_eva_loader = DataLoader(dataset=train_dataset, batch_size=100,sampler=tordata.sampler.SequentialSampler(train_dataset), num_workers=8, pin_memory=True, drop_last=True)
 
 
 model = create_model(num_classes=args.num_class)
 
-save_model = '/home2/dmw/workspace/noisycifar/checkpoint/CIFAR10-aggre_label-best_ckp.ptm'
-model = load(model,save_model)
+#save_model = '/home2/dmw/workspace/noisycifar/checkpoint/CIFAR10-aggre_label-best_ckp.ptm'
+model = load(model,args.save_path)
 task2_detection(model, task2_eva_loader, clean_labels)
 

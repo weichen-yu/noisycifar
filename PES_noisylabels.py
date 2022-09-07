@@ -379,7 +379,7 @@ for epoch in range(args.num_epochs):
 
     _, test_acc = evaluate(model, test_loader, ceriation, "Epoch " + str(epoch) + " Test Acc:")
     _, ema_test_acc = evaluate(ema_model, test_loader, ceriation, "Epoch " + str(epoch) + "  EMA Test Acc:")
-    args.T2=0
+    # args.T2=0
    
     if best_test_acc < test_acc:
        best_test_acc = test_acc
